@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import vn.iostar.embedded.ShippingFeeId;
+import vn.iostar.embeddedld.ShippingFeeId;
 
 @Data
 @AllArgsConstructor

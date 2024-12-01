@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import vn.iostar.embedded.ParcelDetailId;
+import vn.iostar.embeddedld.ParcelDetailId;
 
 @Data
 @AllArgsConstructor

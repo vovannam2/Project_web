@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import vn.iostar.embedded.RouteHistoryId;
+import vn.iostar.embeddedld.RouteHistoryId;
 
 import java.time.LocalDateTime;
 

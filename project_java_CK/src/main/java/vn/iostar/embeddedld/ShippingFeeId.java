@@ -1,4 +1,4 @@
-package vn.iostar.embedded;
+package vn.iostar.embeddedld;
 
 import jakarta.persistence.Embeddable;
 
