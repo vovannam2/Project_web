@@ -9,7 +9,6 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@Builder
 @NoArgsConstructor
 @Entity
 @Table(name = "parcels")
