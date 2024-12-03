@@ -18,35 +18,28 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
-
     @Column(nullable = false, unique = true)
     private String email;
-
     @Column(nullable = false)
     private String password;
+    private String rePassword;
 
     @Column(nullable = false)
-    private String fullname;
-
+    private String fullName;
     private String phone;
-
     private String images;
-
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
-
     private String address;
-
     @Column(nullable = false)
     private Boolean status;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = true)
+    private Role role;
     @OneToMany(mappedBy = "user")
     private List<Parcel> createdParcels;
 
     @OneToMany(mappedBy = "shipper")
     private List<Parcel> shippedParcels;
-
     @OneToMany(mappedBy = "driver")
     private List<RouteHistory> routeHistories;
 
