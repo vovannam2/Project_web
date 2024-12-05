@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{/user/layout-user.html}">
+	  layout:decorate="~{user/layout-user.html}">
 
-<div layout:fragment="content">
-	<h1>Nội dung trang User</h1>
-	<p>Đây là phần nội dung hiển thị trong layout.</p>
-</div>
+<body>
+<section class="row" layout:fragment="content">
+	<h1>content của user</h1>
+</section>
+</body>
 
 </html>

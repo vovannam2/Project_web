@@ -25692,4 +25692,11 @@ table.dataTable tbody td.select-checkbox:after {
     display: none;
   }
 }
+.brand-text {
+    font-size: 1.2rem; /* Kích thước chữ */
+    font-weight: bold; /* Đậm chữ */
+    color: #333; /* Màu chữ */
+    margin-left: 5px; /* Khoảng cách giữa biểu tượng và chữ */
+}
+
 /*# sourceMappingURL=maps/style.css.map */
