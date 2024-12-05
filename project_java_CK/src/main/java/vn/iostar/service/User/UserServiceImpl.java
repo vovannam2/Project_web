@@ -1,4 +1,4 @@
-package vn.iostar.service;
+package vn.iostar.service.User;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -9,18 +9,23 @@ import vn.iostar.entity.User;
 import vn.iostar.exception.HandleException;
 import vn.iostar.exception.StateErrorCode;
 import vn.iostar.repository.UserRepository;
-import vn.iostar.service.User.IUserService;
+import vn.iostar.service.IUserService;
 
 @Service
-public class UserServiceImpl implements IUserService{
+public class UserServiceImpl implements IUserService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ClientServiceImpl clientService;
+
     //  default password = 1234
     @Override
     public void create(User user){
         user.setRole(Role.builder().roleId(1).name("USER").build());
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //user.setPassword(passwordEncoder.encode(user.getPassword()));
+        String password = clientService.create(user);
+        user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
     }
     public boolean loginUser(String email, String password){
@@ -31,9 +36,13 @@ public class UserServiceImpl implements IUserService{
         }
         System.out.println(user.getPassword() + " . " + password);
         if(userRepository.existsByEmail(email))
-            return(passwordEncoder.matches(password, user.getPassword()));
+            //return(passwordEncoder.matches(password, user.getPassword()));
+            return passwordEncoder.matches(password, user.getPassword());
         else {
             return false;
         }
+    }
+    public User getUser(String email){
+        return userRepository.findByEmail(email);
     }
 }

@@ -13,5 +13,4 @@ public class GlobalHandleException {
         String message = stateErrorCode.getMessage();
         return ResponseEntity.badRequest().body(message);
     }
-
 }

@@ -11,8 +11,6 @@
         <hr/>
     <form action="#" th:action ="@{/users/save}" th:object = "${User}" method="post">
         <input type="email" th:field = "*{email}" placeholder="nhập email" class = "form-control w-30 mb-3"/>
-        <input type="password" th:field = "*{password}" placeholder="nhập password" class = "form-control mb-3"/>
-        <input type="password" th:field = "*{rePassword}" placeholder="nhập lại password" class = "form-control mb-3"/>
         <input type="text" th:field = "*{fullName}" placeholder="Họ và tên" class = "form-control w-30 mb-3"/>
         <input type="tel" th:field = "*{phone}" placeholder="Số điện thoại" class = "form-control w-30 mb-3"/>
         <input type="text" th:field = "*{images}" placeholder="images" class = "form-control w-30 mb-3" />

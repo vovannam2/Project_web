@@ -41,16 +41,20 @@
 								type="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
 								<img th:src="@{/user/img/avarta.png}" alt="Avatar" class="rounded-circle me-2"
 									style="width: 30px; height: 30px;">
-								<span>admin</span>
+								<span> Customer </span>
 							</button>
-							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
+							<a href="/users/login_user" class="btn btn-white border-0 d-flex align-items-center">
+								<img th:src="@{/user/img/avarta.png}" alt="Avatar" class="rounded-circle me-2"
+									 style="width: 30px; height: 30px;">
+								<span> Đăng nhập </span>
+							</a>
+
+							<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accuontDropdown">
 								<li><a th:href="@{/account.html}" class="dropdown-item">Quản lý tài khoản</a></li>
-								<li><a th:href="@{/cart.html}" class="dropdown-item">Giỏ hàng của tôi</a></li>
 								<li><a th:href="@{/orders.html}" class="dropdown-item">Đơn hàng của tôi</a></li>
-								<li><a th:href="@{/help.html}" class="dropdown-item">Trợ giúp</a></li>
+								<li><a th:href="@{/account.html}" class="dropdown-item">Quản lý tài khoản</a></li>
 								<li><a th:href="@{/forgot-password.html}" class="dropdown-item">Quên mật khẩu</a></li>
-								<li><a th:href="@{/admin.html}" class="dropdown-item">Quản trị</a></li>
-								<li><a th:href="@{/manager.html}" class="dropdown-item">Manager</a></li>
+								<li><a th:href="@{/help.html}" class="dropdown-item">Trợ giúp</a></li>
 								<li>
 									<hr class="dropdown-divider">
 								</li>
