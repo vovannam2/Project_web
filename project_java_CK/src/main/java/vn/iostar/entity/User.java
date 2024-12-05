@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
+
 @Data
 @AllArgsConstructor
 @Builder
@@ -22,10 +24,13 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    private String username;
+    
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+   
+    @Column(columnDefinition = "nvarchar(50)",nullable = false)
     private String fullname;
 
     private String phone;
