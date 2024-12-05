@@ -7,5 +7,5 @@ import vn.iostar.entity.User;
 import vn.iostar.model.ClientSdi;
 
 public interface IClientService {
-    String create (User clientSdi);
+    String create (User clientSdi) ;
 }

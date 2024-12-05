@@ -4,12 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import vn.iostar.entity.Role;
 import vn.iostar.entity.User;
 import vn.iostar.exception.HandleException;
 import vn.iostar.exception.StateErrorCode;
 import vn.iostar.repository.UserRepository;
 import vn.iostar.service.IUserService;
+
+import java.io.IOException;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -20,7 +23,7 @@ public class UserServiceImpl implements IUserService {
 
     //  default password = 1234
     @Override
-    public void create(User user){
+    public void create(User user, MultipartFile image) throws IOException {
         user.setRole(Role.builder().roleId(1).name("USER").build());
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         //user.setPassword(passwordEncoder.encode(user.getPassword()));
