@@ -23,7 +23,7 @@ public class UserServiceImpl implements IUserService {
 
     //  default password = 1234
     @Override
-    public void create(User user, MultipartFile image) throws IOException {
+    public void create(User user) {
         user.setRole(Role.builder().roleId(1).name("USER").build());
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         //user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -38,10 +38,13 @@ public class UserServiceImpl implements IUserService {
             throw new HandleException(StateErrorCode.USER_NOT_FOUND);
         }
         System.out.println(user.getPassword() + " . " + password);
-        if(userRepository.existsByEmail(email))
+        if(userRepository.existsByEmail(email)){
+            System.out.println("sai mat khau");
             //return(passwordEncoder.matches(password, user.getPassword()));
             return passwordEncoder.matches(password, user.getPassword());
+        }
         else {
+            System.out.println("sai email");
             return false;
         }
     }

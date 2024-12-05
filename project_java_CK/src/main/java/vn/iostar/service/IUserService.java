@@ -8,5 +8,5 @@ import java.io.IOException;
 
 @Repository
 public interface IUserService {
-    public void create(User user, MultipartFile images) throws IOException;
+    public void create(User user) ;
 }

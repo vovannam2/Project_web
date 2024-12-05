@@ -27,8 +27,8 @@ public class Register_Login_User {
         return "user/create_user";
     }
     @PostMapping("/save")
-    public String save( @ModelAttribute("User") User user, RedirectAttributes redirectAttributes) throws IOException {
-
+    public String save( @ModelAttribute("User") User user, RedirectAttributes redirectAttributes) {
+        userService.create(user);
         redirectAttributes.addFlashAttribute("alert", "Đã đăng kí thành công, vui lòng nhập mật khẩu đã cung cấp tại gmail!");
         return "redirect:/users/login_user";
     }
@@ -42,11 +42,12 @@ public class Register_Login_User {
                             RedirectAttributes redirectAttributes) {
         if (userService.loginUser(email, password)) {
             User user = userService.getUser(email);
+
             redirectAttributes.addFlashAttribute("user", user);
             return "redirect:/home"; // Chuyển hướng đến trang home nếu đăng nhập thành công
         } else {
             redirectAttributes.addFlashAttribute("alert", "Sai mật khẩu. Vui lòng thử lại!");
-            return "redirect:/login_user"; // Quay lại form đăng nhập với thông báo lỗi
+            return "redirect:/users/login_user"; // Quay lại form đăng nhập với thông báo lỗi
         }
     }
 }
