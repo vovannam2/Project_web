@@ -41,7 +41,7 @@
 								<div class="mb-3">
 
 									<label for="paymentId" class="form-label">Payment Method ID:</label> <input
-										type="hidden" th:value="${payment.isEdit}"> <input
+										type="hidden" th:name="isEdit" th:value="${payment.isEdit}"> <input
 										type="text" readonly="readonly" class="form-control"
 										th:value="${payment.paymentId}" id="paymentId"
 										th:name="paymentId" aria-describedby="paymentIdid"

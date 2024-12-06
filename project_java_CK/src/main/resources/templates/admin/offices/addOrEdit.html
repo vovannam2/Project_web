@@ -41,7 +41,7 @@
 
 									<label for="officeId" class="form-label">Office ID:</label>
 
-									<input type="hidden" th:value="${office.isEdit}">
+									<input type="hidden" th:name="isEdit" th:value="${office.isEdit}">
 
 									<input type="text" readonly="readonly" class="form-control"
 										th:value="${office.officeId}" id="officeId" th:name="officeId"
