@@ -13,6 +13,7 @@ import vn.iostar.repository.UserRepository;
 import vn.iostar.service.IUserService;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements IUserService {
@@ -23,13 +24,18 @@ public class UserServiceImpl implements IUserService {
 
     //  default password = 1234
     @Override
-    public void create(User user) {
+    public User create(User user) {
         user.setRole(Role.builder().roleId(1).name("USER").build());
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
-        //user.setPassword(passwordEncoder.encode(user.getPassword()));
+        /*
+             this is return password after create password send to mail user!
+             step 1: after create password -> and it save password in clientSer
+             step 2: save it in user and encoder!
+        */
         String password = clientService.create(user);
         user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
+        return user;
     }
     public boolean loginUser(String email, String password){
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10 );
@@ -50,5 +56,8 @@ public class UserServiceImpl implements IUserService {
     }
     public User getUser(String email){
         return userRepository.findByEmail(email);
+    }
+    public List<User> findAll(){
+        return userRepository.findAll();
     }
 }

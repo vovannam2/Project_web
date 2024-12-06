@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -27,10 +28,15 @@ public class User {
     @Column(nullable = false)
     private String fullName;
     private String phone;
-    private String images;
+
+    @Transient
+    private MultipartFile images;
+
+    private String imagePath;
+
     private String address;
     @Column(nullable = false)
-    private Boolean status;
+    private int status;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = true)
@@ -42,5 +48,13 @@ public class User {
     private List<Parcel> shippedParcels;
     @OneToMany(mappedBy = "driver")
     private List<RouteHistory> routeHistories;
+
+    @Transient
+    public String getAvatarImagePath(){
+        if(imagePath == null || userId == null){
+            return null;
+        }
+        return "/update-avatar/" + userId +"/"+ imagePath;
+    }
 
 }

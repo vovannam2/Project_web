@@ -4,22 +4,89 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#images').change(function() {
+                showImageThumbnail(this);
+            });
+        });
+
+        function showImageThumbnail(fileInput) {
+            const file = fileInput.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#thumbnail').attr('src', e.target.result);
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: center;   /* Căn giữa theo chiều dọc */
+            height: 100vh;        /* Chiều cao khung hình */
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+
+        #thumbnail {
+            max-width: 300px;    /* Chiều rộng tối đa */
+            max-height: 300px;   /* Chiều cao tối đa */
+            border: 2px solid #ddd; /* Viền cho ảnh */
+            border-radius: 8px;  /* Bo tròn các góc */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+        }
+        p {
+            text-align: center;
+        }
+        h3 {
+            font-size: 2rem;
+            color: #333;           /* Màu chữ */
+            text-align: center;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+        }
+        .btn {
+            padding: 10px 20px;    /* Tăng khoảng cách trong */
+            font-size: 1.2rem;     /* Kích thước chữ */
+            border-radius: 8px;    /* Bo tròn góc */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+        }
+
+        .btn-success {
+            background-color: #28a745; /* Xanh lá đậm */
+            border-color: #28a745;    /* Viền cùng màu nền */
+        }
+
+        .btn-success:hover {
+            background-color: #218838; /* Xanh đậm hơn khi hover */
+            border-color: #1e7e34;    /* Viền đậm hơn khi hover */
+        }
+    </style>
 </head>
 <body>
     <div class = "container">
-        <h3>Tạo User</h3>
+        <h3>Đăng kí người dùng</h3>
         <hr/>
-    <form action="#" th:action ="@{/users/save}" th:object = "${User}" method="post">
+    <form th:action ="@{/users/save}" th:object = "${User}" enctype="multipart/form-data" method="post"  >
         <input type="email" th:field = "*{email}" placeholder="nhập email" class = "form-control w-30 mb-3"/>
         <input type="text" th:field = "*{fullName}" placeholder="Họ và tên" class = "form-control w-30 mb-3"/>
         <input type="tel" th:field = "*{phone}" placeholder="Số điện thoại" class = "form-control w-30 mb-3"/>
-        <input type="text" th:field = "*{images}" placeholder="images" class = "form-control w-30 mb-3" />
+        <input type="file" name="images" id="images" placeholder="images" class = "form-control w-30 mb-3" accept="image/jpeg, image/png,image/jpg" />
+        <p ><img id="thumbnail" alt="avatar preview"  src="/security/img/avatar.png"/> </p>
         <input type="text" th:field = "*{address}" placeholder="nhập địa chỉ" class = "form-control w-30 mb-3"/>
         <input type="text" th:field = "*{status}" placeholder="status" class = "form-control w-30 mb-3"/>
         <button type="submit" class = "btn btn-success col-2"> Lưu  </button>
     </form>
     </div>
 </body>
+
 </html>
 
 
