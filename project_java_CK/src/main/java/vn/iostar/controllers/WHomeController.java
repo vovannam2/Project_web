@@ -10,7 +10,7 @@ public class WHomeController {
 	@GetMapping("/")
 	public String index()
 	{
-		return "admin/home-admin";
+		return "admin/dashboard";
 	}
 
 }

@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -31,6 +32,9 @@ public class User {
     private String phone;
 
     private String images;
+    
+    @JoinColumn(name = "create_date")
+    private LocalDateTime createDate;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
@@ -49,5 +53,4 @@ public class User {
 
     @OneToMany(mappedBy = "driver")
     private List<RouteHistory> routeHistories;
-
 }

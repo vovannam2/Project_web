@@ -38,7 +38,7 @@ public class Parcel {
     private PostOffice destinationOffice;
 
     @ManyToOne
-    @JoinColumn(name = "shipper_id", nullable = false)
+    @JoinColumn(name = "shipper_id", nullable = true)
     private User shipper;
 
     private Float weight;
@@ -46,6 +46,10 @@ public class Parcel {
     private String status;
 
     private String note;
+    
+    //Thêm chi phí vận chuyển
+    @JoinColumn(name = "shipping_fee")
+    private int shippingFee;
 
     @ManyToOne
     @JoinColumn(name = "shipping_type_id")
