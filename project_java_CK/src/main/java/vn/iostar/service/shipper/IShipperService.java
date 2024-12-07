@@ -10,7 +10,7 @@ public interface IShipperService {
 
 	List<Parcel> findParcelsWithDetailsByShipperId(Integer shipperId);
 
-	Optional<Parcel> findById(Integer id);
+	Optional<Parcel> findById(int id);
 
 	
 

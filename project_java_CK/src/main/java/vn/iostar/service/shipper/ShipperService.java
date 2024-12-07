@@ -25,7 +25,7 @@ public class ShipperService implements IShipperService{
 	}
 
 	@Override
-	public Optional<Parcel> findById(Integer id) {
+	public Optional<Parcel> findById(int id) {
 		return parcelRepo.findById(id);
 	}
 

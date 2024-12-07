@@ -37,10 +37,10 @@ public class ShipperController {
         // Lấy danh sách các đơn hàng dựa trên shipperId
          //List<Parcel> parcels = shiperService.findParcelsWithDetailsByShipperId(shipperId);
         
-         Optional<Parcel> paOtional = shiperService.findById(shipperId);
+         Optional<Parcel> paOtional = shiperService.findById(2);
          if (paOtional.isPresent()) {
-        	 Parcel user = paOtional.get();
-             System.out.println(user.getShipper());  // In danh sách các đơn hàng ra console
+        	 Parcel donHang = paOtional.get();
+             System.out.println(donHang.getShipper());  // In danh sách các đơn hàng ra console
          }
         	
 //
