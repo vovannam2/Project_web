@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -36,6 +38,9 @@ public class User {
     private String phone;
 
     private String images;
+    
+    @JoinColumn(name = "create_date")
+    private LocalDateTime createDate;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
@@ -46,13 +51,12 @@ public class User {
     @Column(nullable = false)
     private Boolean status;
 
-//    @OneToMany(mappedBy = "user")
-//    private List<Parcel> createdParcels;
+    @OneToMany(mappedBy = "user")
+    private List<Parcel> createdParcels;
 
     @OneToMany(mappedBy = "shipper")
     private List<Parcel> shippedParcels;
 
     @OneToMany(mappedBy = "driver")
     private List<RouteHistory> routeHistories;
-
 }
