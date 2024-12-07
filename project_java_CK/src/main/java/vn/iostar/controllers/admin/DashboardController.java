@@ -1,31 +1,29 @@
 package vn.iostar.controllers.admin;
-
-import java.text.NumberFormat;
-import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import vn.iostar.service.IParcelService;
+
 @Controller
-@RequestMapping
+@RequestMapping("/admin")
 public class DashboardController {
 	
-	@RequestMapping({"", "/"})
+	@Autowired(required = true)
+	IParcelService parcelService;
+	
+	@RequestMapping("")
 	public String dashboard(ModelMap model) {
 		
-		Locale localeVietnam = new Locale("vi", "VN");
-        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(localeVietnam);
 		
-		model.addAttribute("reMonth",10);
-		model.addAttribute("reYear",10);
-		model.addAttribute("reQuarter",10);
-		model.addAttribute("rateCom",10);
-		
-		model.addAttribute("totalMontly", 10);
-		model.addAttribute("totalQuarter",10);
+		model.addAttribute("reDay",parcelService.revenueOnCurrentDate());
+		model.addAttribute("reWeek",parcelService.revenueOnCurrentWeek());
+		model.addAttribute("reMonth",parcelService.revenueOnCurrentMonth());
+		model.addAttribute("reYear",parcelService.revenueOnCurrentYear());
+		model.addAttribute("totalMonthly", parcelService.getMonthlyTotal());
+		model.addAttribute("totalQuarter",parcelService.getQuarterlyTotal());
 
-		return "admin/dashboard";
+		return "admin/dashboard/revenue";
 	}
 }
