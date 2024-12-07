@@ -1,19 +1,17 @@
 package vn.iostar.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "users")
 public class User {
     @Id

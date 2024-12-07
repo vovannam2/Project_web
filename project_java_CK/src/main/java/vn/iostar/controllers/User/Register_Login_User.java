@@ -8,8 +8,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import vn.iostar.entity.Role;
 import vn.iostar.entity.User;
-import vn.iostar.service.User.UserServiceImpl;
+import vn.iostar.service.User.CreateUsersServiceImpl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,17 +24,18 @@ import java.nio.file.StandardCopyOption;
 @RequestMapping("/users")
 public class Register_Login_User {
     @Autowired
-    UserServiceImpl userService;
-
+    CreateUsersServiceImpl userService;
     @GetMapping("/register")
     public String Register(Model model){
         User user = new User();
         model.addAttribute("User", user);
-        return "user/create_user";
+//        return "user/create_user";
+        return "user/Register_User";
     }
     @PostMapping("/save")
     public String save( @ModelAttribute(name = "User") User user,
                         @RequestParam("images") MultipartFile multipartFile,
+                        @RequestParam("option") int selectedOption,
                         RedirectAttributes redirectAttributes
                         ) throws IOException {
         //create file name
@@ -41,6 +43,7 @@ public class Register_Login_User {
         System.out.println(fileName);
         user.setImagePath(fileName);
         System.out.println((user.getAvatarImagePath()));
+        user.setRole(Role.builder().roleId(selectedOption).build());
         User saveUser = userService.create(user);
         String uploadDir = "./update-avatar/" +  saveUser.getUserId();
 
@@ -57,8 +60,7 @@ public class Register_Login_User {
         } catch (IOException e) {
             throw new IOException("not success save file" + fileName);
         }
-
-        redirectAttributes.addFlashAttribute("alert", "Đã đăng kí thành công, vui lòng nhập mật khẩu đã cung cấp tại gmail!");
+        redirectAttributes.addFlashAttribute("alert", "Mật khẩu đã được tạo, vui lòng nhập mật khẩu đã cung cấp tại gmail!");
         return "redirect:/users/login_user";
     }
     @GetMapping("/login_user")
@@ -71,9 +73,12 @@ public class Register_Login_User {
                             RedirectAttributes redirectAttributes) {
         if (userService.loginUser(email, password)) {
             User user = userService.getUser(email);
-
             redirectAttributes.addFlashAttribute("user", user);
-            return "redirect:/home"; // Chuyển hướng đến trang home nếu đăng nhập thành công
+            if(user.getRole().getName().equals("USER")) {
+                return "redirect:/home_user"; // Chuyển hướng đến trang home nếu đăng nhập thành công
+            }else{
+                return "redirect:/home_shipper";
+            }
         } else {
             redirectAttributes.addFlashAttribute("alert", "Sai mật khẩu. Vui lòng thử lại!");
             return "redirect:/users/login_user"; // Quay lại form đăng nhập với thông báo lỗi

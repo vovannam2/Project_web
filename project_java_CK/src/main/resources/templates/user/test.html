@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Bar</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <style>
+    .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    .search-bar {
+        width: 100%;
+        max-width: 600px;
+        position: relative;
+    }
+    .search-bar input {
+        width: 100%;
+        padding: 15px 20px;
+        border: 2px solid #ddd;
+        border-radius: 30px;
+        font-size: 16px;
+        transition: 0.3s;
+    }
+    .search-bar input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        outline: none;
+    }
+    .search-bar button {
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .search-bar button:hover {
+        background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<div class="tracking-container">
+  <h1 class="text-center">Tra Cứu Đơn Hàng</h1>
+  <p class="text-center text-muted">Kiểm tra trạng thái đơn hàng của bạn một cách dễ dàng.</p>
+  <form>
+    <div class="search-container">
+      <div class="search-bar">
+        <input type="text" placeholder="Nhập mã vận đơn của bạn...">
+        <button type="button">🔍 Tìm kiếm</button>
+      </div>
+    </div>
+  </form>
+  <div class="text-center">
+    <img src="https://via.placeholder.com/500x300" alt="Delivery illustration" class="illustration">
+  </div>
+</div>
+
+</body>
+</html>

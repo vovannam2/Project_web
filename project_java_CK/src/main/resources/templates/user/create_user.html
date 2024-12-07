@@ -68,6 +68,41 @@
             background-color: #218838; /* Xanh đậm hơn khi hover */
             border-color: #1e7e34;    /* Viền đậm hơn khi hover */
         }
+        .radio-group-container {
+    margin-top: 20px;
+}
+
+    /* Giao diện nhãn nhóm */
+    .group-label {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+        display: block;
+    }
+
+    /* Căn chỉnh các tùy chọn radio */
+    .radio-group {
+        display: flex;
+        gap: 20px; /* Khoảng cách giữa các nút */
+    }
+
+    .radio-option {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 5px; /* Khoảng cách giữa radio và text */
+    }
+
+    .radio-option input[type="radio"] {
+        accent-color: #4CAF50; /* Tùy chỉnh màu nút radio */
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Khoảng cách dưới cùng */
+    .mb-5 {
+        margin-bottom: 30px;
+    }
     </style>
 </head>
 <body>
@@ -75,13 +110,27 @@
         <h3>Đăng kí người dùng</h3>
         <hr/>
     <form th:action ="@{/users/save}" th:object = "${User}" enctype="multipart/form-data" method="post"  >
-        <input type="email" th:field = "*{email}" placeholder="nhập email" class = "form-control w-30 mb-3"/>
-        <input type="text" th:field = "*{fullName}" placeholder="Họ và tên" class = "form-control w-30 mb-3"/>
-        <input type="tel" th:field = "*{phone}" placeholder="Số điện thoại" class = "form-control w-30 mb-3"/>
-        <input type="file" name="images" id="images" placeholder="images" class = "form-control w-30 mb-3" accept="image/jpeg, image/png,image/jpg" />
+        <input type="email" th:field = "*{email}" placeholder="nhập email" class = "form-control w-30 mb-4"/>
+        <input type="text" th:field = "*{fullName}" placeholder="Họ và tên" class = "form-control w-30 mb-4"/>
+        <input type="tel" th:field = "*{phone}" placeholder="Số điện thoại" class = "form-control w-30 mb-4"/>
+        <input type="file" name="images" id="images" placeholder="images" class = "form-control w-30 mb-4" accept="image/jpeg, image/png,image/jpg" />
         <p ><img id="thumbnail" alt="avatar preview"  src="/security/img/avatar.png"/> </p>
-        <input type="text" th:field = "*{address}" placeholder="nhập địa chỉ" class = "form-control w-30 mb-3"/>
-        <input type="text" th:field = "*{status}" placeholder="status" class = "form-control w-30 mb-3"/>
+        <input type="text" th:field = "*{address}" placeholder="nhập địa chỉ" class = "form-control w-30 mb-4"/>
+        <div class="radio-group-container">
+            <label class="group-label">Chọn vai trò của bạn:</label>
+            <div class="radio-group mb-5">
+                <label class="radio-option">
+                    <input type="radio" id="roleUser" name="option" value="1"> User
+                </label>
+                <label class="radio-option">
+                    <input type="radio" id="roleManager" name="option" value="2"> Manager
+                </label>
+                <label class="radio-option">
+                    <input type="radio" id="roleShipper" name="option" value="3"> Shipper
+                </label>
+            </div>
+        </div>
+        <input type="text" th:field = "*{status}" placeholder="status" class = "form-control w-30 mb-4"/>
         <button type="submit" class = "btn btn-success col-2"> Lưu  </button>
     </form>
     </div>

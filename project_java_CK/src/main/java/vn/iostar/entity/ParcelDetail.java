@@ -1,15 +1,13 @@
 package vn.iostar.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import vn.iostar.embeddedld.ParcelDetailId;
 
-@Data
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "parcel_details")
