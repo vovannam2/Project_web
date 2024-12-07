@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import vn.iostar.entity.User;
 import vn.iostar.service.user.IUserService;
 
@@ -28,7 +29,7 @@ public class SecurityControllers {
 	
 	@PostMapping("login")
 	public String login(ModelMap model, HttpServletRequest req) throws MessagingException {
-		String username = req.getParameter("username");
+	    String username = req.getParameter("username");
 	    String password = req.getParameter("password");
 	    
 	    Optional<User> userOptional = userService.findByUsername(username);
@@ -37,16 +38,21 @@ public class SecurityControllers {
 	        User user = userOptional.get();
 	        
 	        if (user.getUsername().equals(username) && user.getPassword().equalsIgnoreCase(password)) {
-	            // Correct username and password
-	           
-	            return "user/index";
+	            // Lưu thông tin user vào session
+	            HttpSession session = req.getSession();
+	            session.setAttribute("currentUser", user);
+	            
+	            // Chuyển hướng đến trang index
+	            return "redirect:/shipper/home";
+	            //return "shipper/home-shipper";
 	        }
 	    }
 	    
-	    // Incorrect username or password, handle accordingly (e.g., show error message)
+	    // Sai tài khoản hoặc mật khẩu, hiển thị thông báo lỗi
 	    model.addAttribute("message", "Invalid credentials");
-	    return "security/login"; // Adjust the view name accordingly
+	    return "security/login";
 	}
+
 	@GetMapping("register")
 	public String IndexRegister(ModelMap model) {
 		return "security/register";

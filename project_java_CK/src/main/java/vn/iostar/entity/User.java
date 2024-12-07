@@ -46,8 +46,8 @@ public class User {
     @Column(nullable = false)
     private Boolean status;
 
-    @OneToMany(mappedBy = "user")
-    private List<Parcel> createdParcels;
+//    @OneToMany(mappedBy = "user")
+//    private List<Parcel> createdParcels;
 
     @OneToMany(mappedBy = "shipper")
     private List<Parcel> shippedParcels;

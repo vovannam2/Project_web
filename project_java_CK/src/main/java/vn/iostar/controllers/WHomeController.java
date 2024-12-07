@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class WHomeController {
 	
-	@GetMapping("/user")
+	@GetMapping("/shipper")
 	public String index()
 	{
-		return "admin/home-admin";
+		return "shipper/home-shipper";
 	}
 
 }

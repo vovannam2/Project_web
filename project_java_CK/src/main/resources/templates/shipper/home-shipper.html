@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shipper/layout-shipper.html}">
+
+<body>
+    <section class="row" layout:fragment="content">
+        <h1>Danh sách các đơn hàng</h1>
+
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Parcel ID</th>
+                    <th>Trạng thái</th>
+                    <th>Trọng lượng</th>
+                    <th>Ngày tạo</th>
+                    <th>Ngày hoàn thành</th>
+                    <th>Người gửi</th>
+                    <th>Người nhận</th>
+                    <th>Phương thức thanh toán</th>
+                    <th>Bưu cục gửi</th>
+                    <th>Bưu cục nhận</th>
+                    <th>Loại vận chuyển</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Duyệt qua danh sách các đơn hàng -->
+                <tr th:each="parcel : ${parcels}">
+                    <td th:text="${parcel.parcelId}"></td>
+                    <td th:text="${parcel.status}"></td>
+                    <td th:text="${parcel.weight}"></td>
+                    <td th:text="${#dates.format(parcel.createDate, 'dd/MM/yyyy')}"></td> <!-- Kiểm tra format ngày -->
+                    <td th:text="${#dates.format(parcel.completeDate, 'dd/MM/yyyy')}"></td>
+
+                    <!-- Thông tin người gửi -->
+                    <td th:text="${parcel.user.fullname}"></td>
+                    <td th:text="${parcel.recipient.fullname}"></td>
+
+                    <!-- Phương thức thanh toán -->
+                    <td th:text="${parcel.paymentMethod.name}"></td>
+
+                    <!-- Thông tin bưu cục -->
+                    <td th:text="${parcel.startOffice.address}"></td>
+                    <td th:text="${parcel.destinationOffice.address}"></td>
+
+                    <!-- Loại vận chuyển -->
+                    <td th:text="${parcel.shippingType.name}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+
+</html>
