@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+          integrity="sha384-EVSTQN3/azprG1AnmBVMAMRwxlL1W4/c6Uqftc6KXKoLwlj51q6WRR+8TxzT/6d4" crossorigin="anonymous">
+    <title>Manage Parcel Types</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Title -->
+        <h1 class="text-center mb-4">Manage Parcel Types</h1>
+        
+        <!-- Notification Message -->
+        <div th:if="${message != null}" class="alert alert-primary alert-dismissible fade show" role="alert">
+            <i class="fas fa-info-circle"></i> <span th:text="${message}"></span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <!-- Add Shipping Type Button -->
+        <div class="d-flex justify-content-between mb-3">
+            <button class="btn btn-success" th:onclick="location.href='@{/admin/shippingtypes/add}'">
+                <i class="fas fa-plus"></i> Add Shipping Type
+            </button>
+        </div>
+
+        <!-- Shipping Types Table -->
+        <div class="card">
+            <div class="card-header bg-primary text-white">List of Shipping Types</div>
+            <div class="card-body">
+                <table class="table table-striped table-responsive">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID Parcel Type</th>
+                            <th>Name</th>
+                            <th>Parcel Min Weight</th>
+                            <th>Parcel Min Weight</th>
+							<th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="parcelType : ${listParcelTypes}">
+                            <td th:text="${parcelType.parcelTypeId}"></td>
+                            <td th:text="${parcelType.name}"></td>
+                            <td th:text="${parcelType.minWeight}"></td>
+							<td th:text="${parcelType.maxWeight}"></td>
+                            <td>
+                                <!-- Edit Button -->
+                                <a th:href="@{/admin/shippingtypes/edit/{id}(id=${parcelType.parcelTypeId})}" 
+                                   class="btn btn-warning btn-sm me-1">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <!-- Delete Button -->
+                                <a th:href="@{/admin/shippingtypes/delete/{id}(id=${parcelType.parcelTypeId})}" 
+                                   class="btn btn-danger btn-sm"
+                                   th:onclick="return confirm('Are you sure you want to delete this shipping type?');">
+                                    <i class="fas fa-trash-alt"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>
