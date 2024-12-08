@@ -22,10 +22,8 @@ public class ClientServiceImpl implements IClientService {
     public String create(User clientSdi) {
         try {
             MailModel dataMail = new MailModel();
-
             dataMail.setTo(clientSdi.getEmail());
             dataMail.setSubject(Const.SEND_MAIL_SUBJECT.CLIENT_REGISTER);
-
             Map<String, Object> props = new HashMap<>();
             props.put("name", clientSdi.getFullName());
             props.put("password", DataUtils.generateTempPwd(6));

@@ -1,6 +1,8 @@
 package vn.iostar.service.User;
 
 
+import jakarta.annotation.Nonnull;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,8 +11,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import vn.iostar.entity.Parcel;
 import vn.iostar.entity.User;
+import vn.iostar.model.ParcelRouteModel;
 import vn.iostar.repository.ParcelRepository;
 import vn.iostar.repository.UserRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 // handle user edit - delete- update!
@@ -39,13 +46,26 @@ public class UserFunctionServiceImpl {
         user.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(user);
     }
-    public void print(){
-        Parcel parcel = parcelRepository.findByParcelId(14);
-        if(parcel != null){
-            System.out.println(parcel.getParcelId() + " " + parcel.getParcelDetails());
-        }else {
-            System.out.println("khong co don hang");
+    public ParcelRouteModel print(String landingCode){
+        Parcel parcel = parcelRepository.findParcelWithDetails(landingCode);
+        if (parcel == null) {
+            throw new EntityNotFoundException("Parcel not found with ladingCode: " + landingCode);
         }
+        // Ánh xạ RouteHistory thành RouteDetail
+        List<ParcelRouteModel.RouteDetail> routeDetails = parcel.getRouteHistories().stream().map(rh ->
+                new ParcelRouteModel.RouteDetail(
+                        rh.getCheckinTime().toString(),
+                        rh.getCheckoutTime() != null ? rh.getCheckoutTime().toString() : null,
+                        rh.getPostOffice().getAddress(),
+                        rh.getNote()
+                )
+        ).collect(Collectors.toList());
+        return new ParcelRouteModel(
+                parcel.getLadingCode(),
+                parcel.getUser().getUserId(),
+                parcel.getStatus(),
+                routeDetails
+        );
     }
 
 }

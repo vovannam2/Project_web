@@ -24,7 +24,6 @@ public class WHomeController {
 	{
 		List<User> categories = userService.findAll();
 		model.addAttribute("list", categories);
-		functionService.print();
 		return "/user/home-user";
 	}
 	@GetMapping("/home_shipper")

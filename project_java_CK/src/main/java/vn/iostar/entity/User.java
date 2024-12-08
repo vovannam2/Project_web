@@ -44,6 +44,7 @@ public class User {
 
     @OneToMany(mappedBy = "shipper")
     private List<Parcel> shippedParcels;
+
     @OneToMany(mappedBy = "driver")
     private List<RouteHistory> routeHistories;
 

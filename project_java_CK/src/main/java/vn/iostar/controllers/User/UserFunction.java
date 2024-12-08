@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import vn.iostar.entity.Role;
 import vn.iostar.entity.User;
+import vn.iostar.model.ParcelRouteModel;
 import vn.iostar.service.User.UserFunctionServiceImpl;
 
 import java.io.IOException;
@@ -54,7 +55,16 @@ public class UserFunction {
         return "redirect:/users/login_user";
     }
     @PostMapping("/Search_order")
-    public String handleSearchUserOder (){
-        return "redirect:/users/login_user";
+    public String searchUserOder(@RequestParam("ladingCode") String ladingCode, RedirectAttributes redirectAttributes) {
+        redirectAttributes.addAttribute("ladingCode", ladingCode);
+        return "redirect:/users_handle/Handle_search_order";
+    }
+
+    @GetMapping("/Handle_search_order")
+    public String handleSearchUserOrder(@RequestParam("ladingCode") String ladingCode, Model model) {
+        ParcelRouteModel parcelRouteModel = userService.print(ladingCode);
+        System.out.println(parcelRouteModel.getRouteDetails());
+        model.addAttribute("parcelRoute", parcelRouteModel);
+        return "user/test";
     }
 }
