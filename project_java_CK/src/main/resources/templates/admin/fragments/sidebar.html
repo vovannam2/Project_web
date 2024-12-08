@@ -6,33 +6,23 @@
 	<div th:fragment="sidebar">
 		<nav class="sidebar sidebar-offcanvas" id="sidebar">
 			<ul class="nav">
-			
-				<li class="nav-item"><a class="nav-link"
-					data-bs-toggle="collapse" href="#form-elementss"
-					aria-expanded="false" aria-controls="form-elementss"> <i
-						class="icon-grid menu-icon"></i> <span class="menu-title">Tổng quan</span> <i class="menu-arrow"></i>
-				</a>
-					<div class="collapse" id="form-elementss">
-						<ul class="nav flex-column sub-menu">
-							<li class="nav-item"><a class="nav-link"
-								th:href="@{/admin}">Doanh thu</a></li>
-							<li class="nav-item"><a class="nav-link"
-								th:href="@{/admin/dashboard-parcel}">Đơn hàng</a></li>
-							<li class="nav-item"><a class="nav-link"
-								th:href="@{/admin/dashboard-newcustomer}">Khách hàng mới</a></li>
-						</ul>
-					</div></li>
 
 				<li class="nav-item"><a class="nav-link"
-					th:href="@{/admin/offices}"> <i class="icon-layout menu-icon"></i>
-						<span class="menu-title">Quản lý bưu cục</span>
+					th:href="@{/admin/dashboard}"> <i
+						class="icon-bar-graph menu-icon"></i> <span class="menu-title">Tổng
+							quan</span>
 				</a></li>
-				
+
 				<li class="nav-item"><a class="nav-link"
-					th:href="@{/admin/payments}"> <i class="icon-layout menu-icon"></i>
-						<span class="menu-title">Quản lý thanh toán</span>
+					th:href="@{/admin/offices}"> <i class="fa fa-building"></i>
+						<span class="menu-title" style="padding-left:18px;">Quản lý bưu cục</span>
 				</a></li>
-				
+
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/admin/payments}"> <i class="fa fa-credit-card"></i>
+						<span class="menu-title" style="padding-left:18px;">Quản lý thanh toán</span>
+				</a></li>
+
 				<li class="nav-item"><a class="nav-link"
 					data-bs-toggle="collapse" href="#form-elements"
 					aria-expanded="false" aria-controls="form-elements"> <i
