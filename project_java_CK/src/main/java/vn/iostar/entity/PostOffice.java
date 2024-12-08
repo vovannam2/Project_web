@@ -19,6 +19,7 @@ public class PostOffice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer officeId;
 
+    @Column(name = "address", columnDefinition = "NVARCHAR(255) NULL")
     private String address;
 
     private String phone;
