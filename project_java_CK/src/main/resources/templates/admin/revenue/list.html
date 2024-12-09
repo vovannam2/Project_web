@@ -6,10 +6,10 @@
 <body>
 	<section layout:fragment="content">
 		<div class="row" style="padding: 20px; padding-top: 10px;">
-			<h1 style="font-size: 27px;">QUẢN LÝ PHƯƠNG THỨC THANH TOÁN</h1>
+			<h1 style="font-size: 27px;">QUẢN LÝ DOANH THU</h1>
 			<div class="card mb-4">
 				<div class="card-header">
-					<i class="fa fa-table me-1"></i>BẢNG DANH SÁCH PHƯƠNG THỨC THANH TOÁN
+					<i class="fa fa-table me-1"></i>BẢNG DANH SÁCH DOANH THU Ở CÁC BƯU CỤC
 					<button class="btn btn-primary" onclick="exportToExcel()"
 						style="margin-left: 15px; height: 40px;">
 						<svg xmlns="http://www.w3.org/2000/svg" height="1em"
@@ -38,10 +38,6 @@ svg {
                             </svg>
 						Xuất Word
 					</button>
-					<a th:href="@{/admin/payments/add}" class="btn btn-primary"
-						style="float: right; height: 40px; display: flex; align-items: center; justify-content: center;">
-						New <i class="icon-plus menu-icon" style="margin-left: 5px;"></i>
-					</a>
 
 				</div>
 				<div class="container-fluid">
@@ -53,27 +49,22 @@ svg {
 						id="example1">
 						<thead>
 							<tr>
-								<th>ID Payment</th>
-								<th>Name</th>
-								<th>Description</th>
-								<th>Status</th>
-								<th></th><th></th>
+								<th>ID Office</th>
+								<th>Address</th>
+								<th>Daily Revenue</th>
+								<th>Monthly Revenue</th>
+								<th>Quarterly Revenue</th>
+								<th>Yearly Revenue</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="payment : ${payments}">
-								<td th:text="${payment.paymentId}" style="width: 80px; word-wrap:break-word; white-space: normal;"></td>
-								<td th:text="${payment.name}" style="width: auto; word-wrap: break-word;white-space: normal;"></td>
-								<td th:text="${payment.description}" style="max-width: 300px; word-wrap: break-word; white-space: normal;"></td>
-								<td th:text="${payment.status ? 'public' : 'private'}" style="width: 80px;word-wrap: break-word; white-space: normal;"></td>
-								<td style="width: 80px;"><a class="btn btn-success"
-									style="height: 40px;"
-									th:href="@{/admin/payments/edit/{id}(id=${payment.paymentId})}">edit</a>
-								</td>
-								<td style="width: 80px;"><a class="btn btn-danger"
-									style="height: 40px;"
-									th:href="@{/admin/payments/delete/{id}(id=${payment.paymentId})}">delete</a>
-								</td>
+							<tr th:each="item : ${revenue}">
+								<td th:text="${item.office_id}" style="width: 80px; word-wrap:break-word; white-space: normal;"></td>
+								<td th:text="${item.address}" style="width: auto; word-wrap: break-word;white-space: normal;"></td>
+								<td th:text="${item.daily}" style="max-width: 100px; word-wrap: break-word; white-space: normal;"></td>
+								<td th:text="${item.monthly}" style="max-width: 100px; word-wrap: break-word; white-space: normal;"></td>
+								<td th:text="${item.quarterly}" style="max-width: 100px; word-wrap: break-word; white-space: normal;"></td>
+								<td th:text="${item.yearly}" style="max-width: 100px; word-wrap: break-word; white-space: normal;"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -103,21 +94,13 @@ svg {
 		<script>
 			function exportToExcel() {
 				var tableClone = $('#example1').clone();
-				tableClone.find('tr').each(function() {
-					$(this).find('th:last, td:last').remove();
-					$(this).find('th:last, td:last').remove();
-				});
 				var wb = XLSX.utils.table_to_book(tableClone[0], {
 					sheet : "Sheet JS"
 				});
-				XLSX.writeFile(wb, "DanhSachPhuongThucThanhToan.xlsx");
+				XLSX.writeFile(wb, "DanhSachDoanhThu.xlsx");
 			}
 			function exportToWord() {
 				var tableClone = $('#example1').clone();
-				tableClone.find('tr').each(function() {
-					$(this).find('th:last, td:last').remove();
-					$(this).find('th:last, td:last').remove();
-				});
 				var newHtml = tableClone.prop('outerHTML');
 				var blob = new Blob([ '\ufeff', newHtml ], {
 					type : 'application/msword'
@@ -125,7 +108,7 @@ svg {
 				var url = URL.createObjectURL(blob);
 				var a = document.createElement('a');
 				a.href = url;
-				a.download = 'DanhSachPhuongThucThanhToan.doc';
+				a.download = 'DanhSachDoanhThu.doc';
 				document.body.appendChild(a);
 				a.click();
 				document.body.removeChild(a);
