@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import vn.iostar.service.IUserService;
 import vn.iostar.entity.*;
-import vn.iostar.repository.UserRepository;
+import vn.iostar.repository.UserRepositoryAdmin;
 @Controller
 @RequestMapping("admin/management/userManagement")
 public class UserController {
@@ -22,7 +22,7 @@ public class UserController {
 	 */
 	
 	@Autowired
-	private UserRepository userRepository;  // Đảm bảo tên chính xác là UserRepository
+	private UserRepositoryAdmin userRepository;  // Đảm bảo tên chính xác là UserRepository
 
 	@RequestMapping("")
     public String listUsers(ModelMap model) {

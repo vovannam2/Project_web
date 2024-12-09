@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import vn.iostar.service.IShippingTypeService;
 import vn.iostar.service.IUserService;
 import vn.iostar.entity.*;
-import vn.iostar.repository.UserRepository;
+import vn.iostar.repository.UserRepositoryAdmin;
 
 @Controller
 @RequestMapping("admin/management/shippingManagement/shippingType")
