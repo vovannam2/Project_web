@@ -7,7 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import vn.iostar.model.dto.RevenueDTO;
+import vn.iostar.model.RevenueDTO;
 import vn.iostar.service.IRevenueService;
 
 @Controller
@@ -19,9 +19,12 @@ public class RevenueController {
 	@RequestMapping("")
 	public String list(ModelMap model, @RequestParam(name = "pageNo", defaultValue = "1") Integer pageNo) {
 		Page<RevenueDTO> list = revenueService.getAll(pageNo);
-			model.addAttribute("revenue", list);
-			model.addAttribute("totalPage", list.getTotalPages() > 0 ? list.getTotalPages() : 1);
-			model.addAttribute("currentPage", pageNo);
+		model.addAttribute("revenue", list);
+		model.addAttribute("totalPage", list.getTotalPages() > 0 ? list.getTotalPages() : 1);
+		model.addAttribute("currentPage", pageNo);
+		if (list.isEmpty()) {
+			model.addAttribute("message", "Chưa có bưu cục nào để hiển thị. Vui lòng tiến hành tạo bưu cục!");
+		}
 		return "admin/revenue/list";
 	}
 }

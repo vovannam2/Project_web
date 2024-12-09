@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import vn.iostar.entity.PostOffice;
-import vn.iostar.model.dto.RevenueDTO;
+import vn.iostar.model.RevenueDTO;
 
 @Repository
 public interface RevenueRepository extends JpaRepository<PostOffice, Integer>{
@@ -33,7 +33,7 @@ public interface RevenueRepository extends JpaRepository<PostOffice, Integer>{
  + " WHERE YEAR(create_date) = YEAR(GETDATE())\r\n"
  + " GROUP BY start_office_id),\r\n"
  + " Office AS (\r\n"
- + " SELECT office_id, address, phone \r\n"
+ + " SELECT office_id, address \r\n"
  + " FROM post_offices)\r\n"
  + " SELECT \r\n"
  + "     o.office_id AS office_id, \r\n"

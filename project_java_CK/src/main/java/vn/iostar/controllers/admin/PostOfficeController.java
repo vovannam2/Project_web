@@ -33,6 +33,9 @@ public class PostOfficeController {
 			model.addAttribute("offices", list);
 			model.addAttribute("totalPage", list.getTotalPages() > 0 ? list.getTotalPages() : 1);
 			model.addAttribute("currentPage", pageNo);
+			if (list.isEmpty()) {
+				model.addAttribute("message", "Không có bưu cục nào để hiển thị!");
+			}
 		return "admin/offices/list";
 	}
 

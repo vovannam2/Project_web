@@ -10,7 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import vn.iostar.model.dto.RevenueDTO;
+import vn.iostar.model.RevenueDTO;
 import vn.iostar.repository.RevenueRepository;
 
 @Service

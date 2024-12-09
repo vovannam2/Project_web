@@ -1,4 +1,4 @@
-package vn.iostar.model.dto;
+package vn.iostar.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RevenueDTO {
+public class TransactionDTO {
     private int office_id;
     private String address;
     private long daily;
