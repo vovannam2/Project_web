@@ -1,6 +1,9 @@
 package vn.iostar.controllers.User;
 
 
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +24,7 @@ import java.nio.file.StandardCopyOption;
 
 //@RestController
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/account")
 public class Register_Login_User {
     @Autowired
     CreateUsersServiceImpl userService;
@@ -30,7 +33,7 @@ public class Register_Login_User {
         User user = new User();
         model.addAttribute("User", user);
 //        return "user/create_user";
-        return "user/Register_User";
+        return "security/Register";
     }
     @PostMapping("/save")
     public String save( @ModelAttribute(name = "User") User user,
@@ -61,27 +64,31 @@ public class Register_Login_User {
             throw new IOException("not success save file" + fileName);
         }
         redirectAttributes.addFlashAttribute("alert", "Mật khẩu đã được tạo, vui lòng nhập mật khẩu đã cung cấp tại gmail!");
-        return "redirect:/users/login_user";
+        return "redirect:/account/login_account";
     }
-    @GetMapping("/login_user")
+    @GetMapping("/login_account")
     public String showLoginForm(Model model) {
-        return "user/Login-user"; // Trả về tên template Thymeleaf (login.html)
+        return "security/Login"; // Trả về tên template Thymeleaf (login.html)
     }
     @PostMapping("/login")
     public String loginUser(@RequestParam String email,
                             @RequestParam String password,
+                            HttpServletRequest request,
                             RedirectAttributes redirectAttributes) {
-        if (userService.loginUser(email, password)) {
-            User user = userService.getUser(email);
+        String token = userService.loginUser(email, password);
+        if (token == null) {
+            redirectAttributes.addFlashAttribute("alert", "Sai mật khẩu. Vui lòng thử lại!");
+            return "redirect:/account/login_account"; // Quay lại form đăng nhập với thông báo lỗi
+
+        }
+        User user = userService.getUser(email);
+            request.getSession().setAttribute("jwt_token", token);
+            request.getSession().setAttribute("user", user);
             redirectAttributes.addFlashAttribute("user", user);
             if(user.getRole().getName().equals("USER")) {
                 return "redirect:/home_user"; // Chuyển hướng đến trang home nếu đăng nhập thành công
-            }else{
-                return "redirect:/home_shipper";
-            }
-        } else {
-            redirectAttributes.addFlashAttribute("alert", "Sai mật khẩu. Vui lòng thử lại!");
-            return "redirect:/users/login_user"; // Quay lại form đăng nhập với thông báo lỗi
+        }else{
+            return "redirect:/home_shipper";
         }
     }
 

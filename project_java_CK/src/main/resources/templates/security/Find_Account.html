@@ -92,7 +92,7 @@
 <div class="form-container">
     <h2 class="form-title">Tìm tài khoản của bạn</h2>
     <p class="form-description">Vui lòng nhập email để tìm kiếm tài khoản của bạn.</p>
-    <form th:action ="@{/users_handle/search}" method="post">
+    <form th:action ="@{/account_handle/search}" method="post">
         <input
                 type="text"
                 name="email"
@@ -102,7 +102,7 @@
         />
         <hr/>
         <div class="form-actions mb-4">
-            <a href="/users/login_user" class="btn btn-secondary"> Hủy </a>
+            <a href="/account/login_user" class="btn btn-secondary"> Hủy </a>
             <button type="submit" class="btn btn-primary">Tìm kiếm</button>
         </div>
         <div th:if="${alert != null}" class="alert" style="text-align: justify; font-size: 12px;">

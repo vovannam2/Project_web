@@ -62,10 +62,25 @@ public class UserFunctionServiceImpl {
         ).collect(Collectors.toList());
         return new ParcelRouteModel(
                 parcel.getLadingCode(),
-                parcel.getUser().getUserId(),
+                parcel.getUser().getFullName(),
                 parcel.getStatus(),
                 routeDetails
         );
     }
-
+    public Boolean handleChangePassword(String email, String password){
+        User user = userRepository.findByEmail(email);
+        if (user.getPassword().equals(password)) {
+            return false;
+        }else {
+            user.setPassword(passwordEncoder.encode(password));
+            return true;
+        }
+    }
+    public User updateUser(User user){
+        System.out.println("User ID: " + user.getUserId());
+        return userRepository.save(user);
+    }
+    public User getUser(String email){
+        return userRepository.findByEmail(email);
+    }
 }

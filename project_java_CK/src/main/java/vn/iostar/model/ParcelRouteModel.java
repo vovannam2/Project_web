@@ -13,7 +13,7 @@ import java.util.List;
 @Setter
 public class ParcelRouteModel {
         private String ladingCode;
-        private int userId;
+        private String  userName;
         private String status;
         private List<RouteDetail> routeDetails;
         public static class RouteDetail {
@@ -44,9 +44,9 @@ public class ParcelRouteModel {
                 return description;
             }
         }
-        public ParcelRouteModel(String ladingCode, int userId, String status, List<RouteDetail> routeDetails) {
+        public ParcelRouteModel(String ladingCode, String userName, String status, List<RouteDetail> routeDetails) {
             this.ladingCode = ladingCode;
-            this.userId = userId;
+            this.userName = userName;
             this.status = status;
             this.routeDetails = routeDetails;
         }

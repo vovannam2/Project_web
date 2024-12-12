@@ -23,6 +23,8 @@ public class CreateUsersServiceImpl implements ICreateUsersService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    AuthenticationServiceImpl auth;
 
     //  default password = 1234
     @Override
@@ -38,18 +40,22 @@ public class CreateUsersServiceImpl implements ICreateUsersService {
         userRepository.save(user);
         return user;
     }
-    public boolean loginUser(String email, String password){
+    public String loginUser(String email, String password){
         User user = userRepository.findByEmail(email);
         if(user == null){
             throw new HandleException(StateErrorCode.USER_NOT_FOUND);
         }
-        System.out.println(user.getPassword() + " . " + password);
         if(userRepository.existsByEmail(email)){
             //return(passwordEncoder.matches(password, user.getPassword()));
-            return passwordEncoder.matches(password, user.getPassword());
+            if(passwordEncoder.matches(password, user.getPassword())){
+                System.out.println("ma token:" + auth.generateToken(user.getEmail()));
+                return auth.generateToken(user.getEmail());
+            }else {
+                return "notmatch";
+            }
         }
         else {
-            return false;
+            return null;
         }
     }
     public User getUser(String email){

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	  layout:decorate="~{user/layout-user.html}" lang="en">
+	  layout:decorate="~{user/config_layout/layout-user.html}" lang="en">
 <head>
 	<style>
 		/* Toàn bộ giao diện */
@@ -108,7 +108,7 @@
 <body>
 <div class="row" layout:fragment="content">
 	<div th:if="${user == null}">
-		<form th:action="@{/users_handle/Search_order}" method="post">
+		<form th:action="@{/account_handle/Search_order}" method="post">
 			<div class="tracking-container">
 				<h1>Tra Cứu Đơn Hàng</h1>
 				<p>Kiểm tra trạng thái đơn hàng của bạn một cách dễ dàng.</p>
