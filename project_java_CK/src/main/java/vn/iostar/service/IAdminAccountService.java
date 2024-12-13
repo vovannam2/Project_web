@@ -9,7 +9,7 @@ import org.springframework.data.domain.Sort;
 
 import vn.iostar.entity.User;
 
-public interface IUserService {
+public interface IAdminAccountService {
 
 	void deleteAll();
 
@@ -26,5 +26,7 @@ public interface IUserService {
 	List<User> findAll(Sort sort);
 
 	<S extends User> S save(S entity);
+	
+	List<User> findAllAdmin(Integer roleId);
 
 }

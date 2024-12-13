@@ -14,55 +14,58 @@ import vn.iostar.entity.User;
 import vn.iostar.service.*;
 
 @Service
-public class UserServiceImpl implements IUserService{
+public class AdminAccountServiceImpl implements IAdminAccountService{
 
 
 	@Autowired
-	UserRepositoryAdmin userRepository;
+	AdminAccountRepository adminAccountRepository;
 
-	public UserServiceImpl(UserRepositoryAdmin userRepository) {
-		this.userRepository = userRepository;
+	public AdminAccountServiceImpl(AdminAccountRepository userRepository) {
+		this.adminAccountRepository = userRepository;
 	}
 
 	@Override
 	public <S extends User> S save(S entity) {
-		return userRepository.save(entity);
+		return adminAccountRepository.save(entity);
 	}
 
 	@Override
 	public List<User> findAll(Sort sort) {
-		return userRepository.findAll(sort);
+		return adminAccountRepository.findAll(sort);
 	}
 
 	@Override
 	public Page<User> findAll(Pageable pageable) {
-		return userRepository.findAll(pageable);
+		return adminAccountRepository.findAll(pageable);
 	}
 
 	@Override
 	public List<User> findAll() {
-		return userRepository.findAll();
+		return adminAccountRepository.findAll();
 	}
 
 	@Override
 	public Optional<User> findById(Integer id) {
-		return userRepository.findById(id);
+		return adminAccountRepository.findById(id);
 	}
 
 	@Override
 	public void deleteById(Integer id) {
-		userRepository.deleteById(id);
+		adminAccountRepository.deleteById(id);
 	}
 
 	@Override
 	public void delete(User entity) {
-		userRepository.delete(entity);
+		adminAccountRepository.delete(entity);
 	}
 
 	@Override
 	public void deleteAll() {
-		userRepository.deleteAll();
+		adminAccountRepository.deleteAll();
 	}
 
-	
+	@Override
+	public List<User> findAllAdmin(Integer roleId) {
+		return adminAccountRepository.findByRole_RoleId(1); // Tìm người dùng với roleId là 1
+	}
 }

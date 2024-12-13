@@ -17,11 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.validation.Valid;
 import vn.iostar.service.IParcelTypeService;
-import vn.iostar.service.IUserService;
 import vn.iostar.entity.*;
 import vn.iostar.models.ParcelTypeModel;
 import vn.iostar.repository.ParcelTypeRepository;
-import vn.iostar.repository.UserRepositoryAdmin;
 
 @Controller
 @RequestMapping("admin/management/shippingManagement/ParcelType")
