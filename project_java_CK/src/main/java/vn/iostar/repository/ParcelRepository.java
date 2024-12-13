@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import vn.iostar.entity.Parcel;
@@ -111,4 +112,13 @@ public interface ParcelRepository extends JpaRepository<Parcel, Integer>{
 			+ "GROUP BY q.quarter_number\r\n"
 			+ "ORDER BY q.quarter_number", nativeQuery = true)
 	List<Long> getQuarterlyTotalParcel();
+	
+	@Query(value = "SELECT count(*) AS number "
+			+ "FROM parcels "
+			+ "WHERE user_id = :id", nativeQuery = true)
+	long countOneCustomer(@Param("id") Integer id);
+	
+	@Query(value = "SELECT * FROM parcels "
+			+ "WHERE user_id = :id", nativeQuery = true)
+	List<Parcel> findParcelOneCustomer(@Param("id") Integer id);
 }

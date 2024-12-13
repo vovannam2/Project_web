@@ -2,6 +2,8 @@ package vn.iostar.service;
 
 import java.util.List;
 
+import vn.iostar.entity.Parcel;
+
 public interface IParcelService {
 	long revenueOnCurrentDate();
 
@@ -26,4 +28,8 @@ public interface IParcelService {
 	List<Long> getMonthlyTotalParcel();
 
 	List<Long> getQuarterlyTotalParcel();
+	
+	long countOneCustomer(Integer id);
+	
+	List<Parcel> findParcelOneCustomer(Integer id);
 }

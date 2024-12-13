@@ -6,11 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
 
 @Data
 @AllArgsConstructor
@@ -21,6 +19,7 @@ import javax.print.attribute.standard.DateTimeAtCompleted;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Integer userId;
 
     @Column(nullable = false, unique = true)
@@ -29,7 +28,7 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "NVARCHAR(100)")
     private String fullname;
 
     private String phone;
@@ -42,7 +41,8 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Role role;
-
+    
+    @Column(columnDefinition = "NVARCHAR(500)")
     private String address;
 
     @Column(nullable = false)
@@ -56,4 +56,7 @@ public class User {
 
     @OneToMany(mappedBy = "driver")
     private List<RouteHistory> routeHistories;
+    
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private EmployeeOffice employOffice;
 }

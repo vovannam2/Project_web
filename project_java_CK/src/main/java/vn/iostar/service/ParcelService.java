@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import vn.iostar.entity.Parcel;
 import vn.iostar.repository.ParcelRepository;
 
 @Service
@@ -74,6 +75,16 @@ public class ParcelService implements IParcelService{
 	@Override
 	public List<Long> getQuarterlyTotalParcel() {
 		return parcelRepository.getQuarterlyTotalParcel();
+	}
+
+	@Override
+	public long countOneCustomer(Integer id) {
+		return parcelRepository.countOneCustomer(id);
+	}
+
+	@Override
+	public List<Parcel> findParcelOneCustomer(Integer id) {
+		return parcelRepository.findParcelOneCustomer(id);
 	}
 
 }
