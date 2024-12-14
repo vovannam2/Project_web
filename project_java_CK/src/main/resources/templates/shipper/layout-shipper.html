@@ -33,6 +33,7 @@
 
 </head>
 
+
 <body>
 	<!-- Header with Horizontal Navbar -->
 	<header class="row">
@@ -52,9 +53,9 @@
 			<!-- Main content area -->
 			<div class="main-panel"
 				style="background-color: #e7f3ff; color: #212529; padding: 20px; border-radius: 8px;">
-				<section class="col-md-9 col-lg-10">
-					<div class="row mt-4">
-						<div class="col mt-5 mb-5">
+				<section class="col-md-12 col-lg-12">
+					<div class="row">
+						<div class="col">
 							<div layout:fragment="content"></div> <!-- Placeholder for page-specific content -->
 						</div>
 					</div>
@@ -62,11 +63,8 @@
 			</div>
 		</div>
 	</main>
-
-	<br>
-
-
 	<!-- JS and other scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 	<script th:src="@{/admin/assets/vendors/js/vendor.bundle.base.js}"></script>
 	<script th:src="@{/admin/assets/vendors/chart.js/chart.umd.js}"></script>
 	<script th:src="@{/admin/assets/vendors/datatables.net/jquery.dataTables.js}"></script>
@@ -78,6 +76,8 @@
 	<script th:src="@{/admin/assets/js/todolist.js}"></script>
 	<script th:src="@{/admin/assets/js/jquery.cookie.js}" type="text/javascript"></script>
 	<script th:src="@{/admin/assets/js/dashboard.js}"></script>
+	<script th:src="@{/admin/assets/js/chat/chat.js}"></script>
+
 </body>
 
 </html>

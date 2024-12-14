@@ -50,7 +50,6 @@ public class Parcel {
     //Thêm chi phí vận chuyển
     @JoinColumn(name = "shipping_fee")
     private int shippingFee;
-	private String note;
 
     @ManyToOne
     @JoinColumn(name = "shipping_type_id")

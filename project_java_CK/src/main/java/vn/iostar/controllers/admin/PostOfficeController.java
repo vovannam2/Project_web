@@ -55,7 +55,7 @@ public class PostOfficeController {
 			model.addAttribute("office", officeModel);
 			return new ModelAndView("admin/offices/addOrEdit", model);
 		}
-		model.addAttribute("message", "Bưu cục đã tổn tại!");
+		model.addAttribute("message", "Bưu cục đã tồn tại!");
 		return new ModelAndView("forward:/admin/offices", model);
 	}
 

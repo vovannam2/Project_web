@@ -43,7 +43,7 @@ public class SecurityControllers {
 	            session.setAttribute("currentUser", user);
 	            
 	            // Chuyển hướng đến trang index
-	            return "redirect:/shipper/home";
+	            return "redirect:/shipper/listPacel";
 	            //return "shipper/home-shipper";
 	        }
 	    }

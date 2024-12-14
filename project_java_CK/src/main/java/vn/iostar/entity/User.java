@@ -6,11 +6,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.sql.Date;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
-import jakarta.persistence.Column;
+
 
 @Data
 @AllArgsConstructor
@@ -23,16 +23,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userId;
 
+    private String username;
     @Column(nullable = false, unique = true)
     private String email;
 
-    private String username;
-    
     @Column(nullable = false)
     private String password;
 
-   
-    @Column(columnDefinition = "nvarchar(50)",nullable = false)
+    @Column(nullable = false)
     private String fullname;
 
     private String phone;
