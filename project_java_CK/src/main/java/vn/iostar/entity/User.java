@@ -39,9 +39,7 @@ public class User {
     @JoinColumn(name = "create_date")
     private LocalDateTime createDate;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+ 
     
     @Column(columnDefinition = "NVARCHAR(500)")
     private String address;
