@@ -38,7 +38,7 @@ public class Parcel {
     private PostOffice destinationOffice;
 
     @ManyToOne
-    @JoinColumn(name = "shipper_id", nullable = false)
+    @JoinColumn(name = "shipper_id", nullable = true)
     private User shipper;
 
     private Float weight;
