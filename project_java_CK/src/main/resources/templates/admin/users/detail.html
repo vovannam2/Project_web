@@ -68,7 +68,7 @@
 									<div class="card">
 										<div class="card-body">
 											<h1 class="h3 mb-0 text-gray-800" th:text="${user.fullname}"
-												style="font-size: 30px;"></h1>
+												style="font-size: 25px;"></h1>
 											<br> <br>
 
 											<!-- Display User Information -->
@@ -116,7 +116,7 @@
 								<div class="card">
 
 									<div class="container-fluid" style="padding: 20px;">
-										<h1 class="h3 mb-0 text-gray-800" style="font-size: 30px;">Đơn
+										<h1 class="h3 mb-0 text-gray-800" style="font-size: 25px;">Đơn
 											hàng</h1>
 										<br>
 										<table border="1"
@@ -124,11 +124,11 @@
 											id="example1">
 											<thead>
 												<tr>
-													<th>ID Parcel</th>
+													<th>ID</th>
 													<th>Create Date</th>
 													<th>Fee</th>
-													<th>From</th>
-													<th>To</th>
+													<th>Start Office</th>
+													<th>Destination Office</th>
 													<th>Status</th>
 												</tr>
 											</thead>
@@ -140,17 +140,17 @@
 												</tr>
 												<tr th:each="item : ${list}">
 													<td th:text="${item.parcelId}"
-														style="width: 80px; word-wrap: break-word; white-space: normal;"></td>
+														style="width: 40px; word-wrap: break-word; white-space: normal;"></td>
 													<td th:text="${item.createDate}"
 														style="width: auto; word-wrap: break-word; white-space: normal;"></td>
 													<td th:text="${item.shippingFee}"
-														style="max-width: 300px; word-wrap: break-word; white-space: normal;"></td>
-													<td th:text="${item.startOffice.officeId}"
 														style="width: 80px; word-wrap: break-word; white-space: normal;"></td>
-													<td th:text="${item.destinationOffice.officeId}"
-														style="width: 80px; word-wrap: break-word; white-space: normal;"></td>
+													<td th:text="${item.startOffice.address}"
+														style="width: 200px; word-wrap: break-word; white-space: normal;"></td>
+													<td th:text="${item.destinationOffice.address}"
+														style="width: 200px; word-wrap: break-word; white-space: normal;"></td>
 													<td th:text="${item.status}"
-														style="width: 80px; word-wrap: break-word; white-space: normal;"></td>
+														style="width: 70px; word-wrap: break-word; white-space: normal;"></td>
 												</tr>
 												<tr>
 													<td colspan="4">Số đơn hàng đã tạo</td>
