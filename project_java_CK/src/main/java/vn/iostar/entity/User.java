@@ -26,15 +26,14 @@ public class User {
     private String username;
     @Column(nullable = false, unique = true)
     private String email;
-
     @Column(nullable = false)
     private String password;
+    private String rePassword;
 
     @Column(nullable = false, columnDefinition = "NVARCHAR(100)")
     private String fullname;
 
     private String phone;
-
     private String images;
     
     @JoinColumn(name = "create_date")
@@ -46,16 +45,17 @@ public class User {
     
     @Column(columnDefinition = "NVARCHAR(500)")
     private String address;
-
     @Column(nullable = false)
     private Boolean status;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = true)
+    private Role role;
     @OneToMany(mappedBy = "user")
     private List<Parcel> createdParcels;
 
     @OneToMany(mappedBy = "shipper")
     private List<Parcel> shippedParcels;
-
     @OneToMany(mappedBy = "driver")
     private List<RouteHistory> routeHistories;
     
