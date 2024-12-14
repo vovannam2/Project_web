@@ -14,9 +14,12 @@ public class CloudinaryService {
     @Autowired
     Cloudinary cloudinary;
 
-    public String uploadImage(String imagePath) {
+    public String uploadImage(byte[] imageBytes) {
         try {
-            Map uploadResult =cloudinary.uploader().upload(imagePath, ObjectUtils.emptyMap());
+            // Upload dữ liệu byte[] lên Cloudinary
+            Map<?, ?> uploadResult = cloudinary.uploader().upload(imageBytes, ObjectUtils.emptyMap());
+
+            // Trích xuất URL ảnh từ kết quả upload
             return (String) uploadResult.get("url");
         } catch (Exception e) {
             e.printStackTrace();
