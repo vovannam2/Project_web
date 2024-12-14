@@ -36,6 +36,9 @@ public class PaymentMethodController {
 		model.addAttribute("payments", list);
 		model.addAttribute("totalPage", list.getTotalPages() > 0 ? list.getTotalPages() : 1);
 		model.addAttribute("currentPage", pageNo);
+		if (list.isEmpty()) {
+			model.addAttribute("message", "Không có phương thức thanh toán nào để hiển thị!");
+		}
 		return "admin/payments/list";
 	}
 

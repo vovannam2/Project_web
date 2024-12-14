@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import vn.iostar.entity.Parcel;
 import vn.iostar.repository.ParcelRepository;
 
 @Service
@@ -37,13 +38,53 @@ public class ParcelService implements IParcelService{
 	}
 
 	@Override
-	public List<Long> getMonthlyTotal() {
-		return parcelRepository.getMonthlyTotal();
+	public List<Long> getMonthlyTotalRevenue() {
+		return parcelRepository.getMonthlyTotalRevenue();
 	}
 
 	@Override
-	public List<Long> getQuarterlyTotal() {
-		return parcelRepository.getQuarterlyTotal();
+	public List<Long> getQuarterlyTotalRevenue() {
+		return parcelRepository.getQuarterlyTotalRevenue();
+	}
+
+	@Override
+	public long parcelOnCurrentDate() {
+		return parcelRepository.parcelOnCurrentDate();
+	}
+
+	@Override
+	public long parcelOnCurrentWeek() {
+		return parcelRepository.parcelOnCurrentWeek();
+	}
+
+	@Override
+	public long parcelOnCurrentMonth() {
+		return parcelRepository.parcelOnCurrentMonth();
+	}
+
+	@Override
+	public long parcelOnCurrentYear() {
+		return parcelRepository.parcelOnCurrentYear();
+	}
+
+	@Override
+	public List<Long> getMonthlyTotalParcel() {
+		return parcelRepository.getMonthlyTotalParcel();
+	}
+
+	@Override
+	public List<Long> getQuarterlyTotalParcel() {
+		return parcelRepository.getQuarterlyTotalParcel();
+	}
+
+	@Override
+	public long countOneCustomer(Integer id) {
+		return parcelRepository.countOneCustomer(id);
+	}
+
+	@Override
+	public List<Parcel> findParcelOneCustomer(Integer id) {
+		return parcelRepository.findParcelOneCustomer(id);
 	}
 
 }

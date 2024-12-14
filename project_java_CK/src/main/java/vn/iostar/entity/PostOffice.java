@@ -17,6 +17,7 @@ import java.util.List;
 public class PostOffice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "office_id")
     private Integer officeId;
 
     @Column(name = "address", columnDefinition = "NVARCHAR(255) NULL")
@@ -32,6 +33,7 @@ public class PostOffice {
 
     @OneToMany(mappedBy = "postOffice")
     private List<RouteHistory> routeHistories;
-
-    // Getters and Setters
+    
+    @OneToOne(mappedBy = "office", cascade = CascadeType.ALL)
+    private EmployeeOffice eo;
 }
