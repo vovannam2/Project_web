@@ -44,11 +44,12 @@
           position: relative;
           margin: 0;
           padding-bottom: 4rem;
-          min-height: 100%;
+          min-height: 100vh;
           font-family: "Helvetica Neue", Arial, sans-serif;
         }
         footer {
-          position: absolute;
+          position: relative;
+          margin-top: auto;
           right: 0;
           bottom: 0;
           left: 0;
@@ -56,14 +57,15 @@
           background-color: #efefef;
           text-align: center;
           padding-top: 2rem;
-           padding-bottom: 2rem;
+          padding-bottom: 2rem;
+          margin-top: 30px; /* Tạo khoảng cách trên footer */
         }
         header {
           margin-bottom: 70px; /* Tạo khoảng cách dưới header */
         }
-
         .layout-content {
           margin-top: 90px; /* Điều chỉnh giá trị này để tách header và content */
+           margin-bottom: 70px;
         }
     </style>
 </head>
@@ -78,9 +80,7 @@
     <br>
 
     <div class="col mb-7" layout:fragment="content">
-
     </div>
-
     <br>
     <footer class="row">
         <div class="col">

@@ -4,6 +4,7 @@ package vn.iostar.controllers.User;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,20 +77,25 @@ public class Register_Login_User {
                             HttpServletRequest request,
                             RedirectAttributes redirectAttributes) {
         String token = userService.loginUser(email, password);
+        System.out.println(token);
         if (token == null) {
             redirectAttributes.addFlashAttribute("alert", "Sai mật khẩu. Vui lòng thử lại!");
             return "redirect:/account/login_account"; // Quay lại form đăng nhập với thông báo lỗi
-
-        }
-        User user = userService.getUser(email);
+        }else {
+            User user = userService.getUser(email);
             request.getSession().setAttribute("jwt_token", token);
             request.getSession().setAttribute("user", user);
             redirectAttributes.addFlashAttribute("user", user);
-            if(user.getRole().getName().equals("USER")) {
-                return "redirect:/home_user"; // Chuyển hướng đến trang home nếu đăng nhập thành công
-        }else{
-            return "redirect:/home_shipper";
+            if (user.getRole().getName().equals("USER")) {
+                return "redirect:/home/home_user"; // Chuyển hướng đến trang home nếu đăng nhập thành công
+            } else {
+                return "redirect:/home/home_shipper";
+            }
         }
     }
-
+    @GetMapping("/logout")
+    public String Logout(HttpSession session) {
+        session.invalidate();
+        return "security/Login";
+    }
 }

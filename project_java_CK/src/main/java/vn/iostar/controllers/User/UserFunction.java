@@ -71,24 +71,34 @@ public class UserFunction {
         return "user/Search_ParcelRoute";
     }
     @GetMapping("/ChangePassword")
-    public String layoutChangePassword(Model model) {
+    public String layoutChangePassword( Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        User user1 = (User)request.getSession().getAttribute("user");
+        model.addAttribute("user", user1);
+        if (user1 == null) {
+            redirectAttributes.addFlashAttribute("alert", "session time out");
+            return "redirect:/account/login_account";  // Chuyển hướng tới trang đăng nhập hoặc hiển thị lỗi
+        }
+        model.addAttribute("user", user1);
         return "security/Change_Password";
     }
     @PostMapping("/change-password")
     public String handleChangePassword(@RequestParam("password") String password, HttpServletRequest request,
                                        RedirectAttributes redirectAttributes){
         User user = (User) request.getSession().getAttribute("user");
+
+
         if(userService.handleChangePassword(user.getEmail(), password)){
             redirectAttributes.addFlashAttribute("alert", "success change password");
         }else {
             redirectAttributes.addFlashAttribute("alert", "new password don't match old password");
         }
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
         return "redirect:/account_handle/ChangePassword";
     }
     @GetMapping("/layoutEdit")
     public String layoutEditUser(Model model, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
-        System.out.println(user.getUserId());
         model.addAttribute("user", user);
         return "user/infoUser";
     }

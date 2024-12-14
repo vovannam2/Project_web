@@ -42,19 +42,12 @@ public class CreateUsersServiceImpl implements ICreateUsersService {
     }
     public String loginUser(String email, String password){
         User user = userRepository.findByEmail(email);
-        if(user == null){
-            throw new HandleException(StateErrorCode.USER_NOT_FOUND);
-        }
-        if(userRepository.existsByEmail(email)){
             //return(passwordEncoder.matches(password, user.getPassword()));
-            if(passwordEncoder.matches(password, user.getPassword())){
-                System.out.println("ma token:" + auth.generateToken(user.getEmail()));
-                return auth.generateToken(user.getEmail());
-            }else {
-                return "notmatch";
-            }
-        }
-        else {
+        boolean result =  passwordEncoder.matches(password, user.getPassword());
+        if(result){
+            System.out.println("ma token:" + auth.generateToken(user.getEmail()));
+            return auth.generateToken(user.getEmail());
+        }else {
             return null;
         }
     }

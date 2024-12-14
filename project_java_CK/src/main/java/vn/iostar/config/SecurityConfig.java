@@ -2,45 +2,44 @@ package vn.iostar.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
-//@EnableWebSecurity
-public class SecurityConfig  {
-//    private final String[] PUBLIC_API = {
-//            "/home_user","/users"
-//    };
-//    @NonFinal
-//    protected static final String SIGN_KEY =
-//            "llOLLAGjN8hjLQTCefRomDKTGzzBxZISXiNKTgt9LNai5o1gHSCkFr9uR5cmrNFJ";
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-//        httpSecurity.authorizeHttpRequests(
-//                request -> request.requestMatchers(HttpMethod.GET, PUBLIC_API)
-//                        .anonymous().requestMatchers(HttpMethod.POST, PUBLIC_API)
-//                        .permitAll()
-//                        .anyRequest()
-//                        .authenticated()
-//
-//        );
-//        httpSecurity.oauth2ResourceServer(
-//                oauth2 -> oauth2.jwt(
-//                        jwtConfigurer -> jwtConfigurer.decoder(jwtDecoder()))
-//        );
-//        httpSecurity.csrf(AbstractHttpConfigurer::disable);
-//        return httpSecurity.build();
-//    }
-//    @Bean
-//    JwtDecoder jwtDecoder(){
-//        SecretKeySpec spec = new SecretKeySpec(SIGN_KEY.getBytes() ,"HS512");
-//        return NimbusJwtDecoder.withSecretKey(spec)
-//                .macAlgorithm(MacAlgorithm.HS512)
-//                .build();
-//    }
-        @Bean
+@EnableWebSecurity
+public class SecurityConfig {
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.authorizeHttpRequests(
+                        request -> request.requestMatchers("/**").permitAll()
+                                .requestMatchers("/ws/**").permitAll()
+                                .anyRequest()
+                                .authenticated()
+                )
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http
+                .headers(headers -> headers
+                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin
+                        )
+                );
+        http.csrf(AbstractHttpConfigurer::disable);
+        return http.build();
+    }
+
+    @Bean
         public PasswordEncoder passwordEncoder (){
             return new BCryptPasswordEncoder(10 );
         }

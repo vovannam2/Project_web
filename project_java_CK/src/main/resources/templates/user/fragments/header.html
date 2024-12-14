@@ -29,7 +29,7 @@
 									<a th:href="@{/404.html}" class="dropdown-item">404 Page</a>
 								</div>
 							</div>
-							<a th:href="@{/contact.html}" class="nav-item nav-link">Contact</a>
+							<a th:href="@{account/Contact_manager}" class="nav-item nav-link">Contact</a>
 						</div>
 						<!-- Nếu người dùng đã đăng nhập -->
 						<div th:if="${user != null}">
@@ -47,7 +47,7 @@
 									<li><a th:href="@{/account_handle/ChangePassword}" class="dropdown-item">Change Password</a></li>
 									<li><a th:href="@{/help.html}" class="dropdown-item">Trợ giúp</a></li>
 									<li><hr class="dropdown-divider"></li>
-									<li><a th:href="@{/account/login_account}" class="dropdown-item text-danger">Đăng xuất</a></li>
+									<li><a th:href="@{/account/logout}" class="dropdown-item text-danger">Đăng xuất</a></li>
 								</ul>
 							</div>
 							<div>

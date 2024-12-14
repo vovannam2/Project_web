@@ -69,10 +69,11 @@ public class UserFunctionServiceImpl {
     }
     public Boolean handleChangePassword(String email, String password){
         User user = userRepository.findByEmail(email);
-        if (user.getPassword().equals(password)) {
+        if (passwordEncoder.matches(password, user.getPassword())) {
             return false;
         }else {
             user.setPassword(passwordEncoder.encode(password));
+            userRepository.save(user);
             return true;
         }
     }
@@ -82,5 +83,8 @@ public class UserFunctionServiceImpl {
     }
     public User getUser(String email){
         return userRepository.findByEmail(email);
+    }
+    public List<Object[]> getUserWithParcelsAndProducts(Integer userId) {
+        return userRepository.findProductDetailsForUser(userId);
     }
 }
