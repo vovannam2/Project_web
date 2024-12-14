@@ -29,27 +29,25 @@ public class SecurityControllers {
 	
 	@PostMapping("login")
 	public String login(ModelMap model, HttpServletRequest req) throws MessagingException {
-	    String username = req.getParameter("username");
-	    String password = req.getParameter("password");
-	    
-	    Optional<User> userOptional = userService.findByUsername(username);
-	    
-	    if (userOptional.isPresent()) {
-	        User user = userOptional.get();
-	        
-	        if (user.getUsername().equals(username) && user.getPassword().equalsIgnoreCase(password)) {
-	            // Lưu thông tin user vào session
-	            HttpSession session = req.getSession();
-	            session.setAttribute("currentUser", user);
-	            
-	            // Chuyển hướng đến trang index
-	            return "redirect:/shipper/listPacel";
-	            //return "shipper/home-shipper";
-	        }
-	    }
-	    
-	    // Sai tài khoản hoặc mật khẩu, hiển thị thông báo lỗi
-	    model.addAttribute("message", "Invalid credentials");
+		/*
+		 * String username = req.getParameter("username"); String password =
+		 * req.getParameter("password");
+		 * 
+		 * Optional<User> userOptional = userService.findByUsername(username);
+		 * 
+		 * if (userOptional.isPresent()) { User user = userOptional.get();
+		 * 
+		 * if (user.getUsername().equals(username) &&
+		 * user.getPassword().equalsIgnoreCase(password)) { // Lưu thông tin user vào
+		 * session HttpSession session = req.getSession();
+		 * session.setAttribute("currentUser", user);
+		 * 
+		 * // Chuyển hướng đến trang index return "redirect:/shipper/listPacel";
+		 * //return "shipper/home-shipper"; } }
+		 * 
+		 * // Sai tài khoản hoặc mật khẩu, hiển thị thông báo lỗi
+		 * model.addAttribute("message", "Invalid credentials");
+		 */
 	    return "security/login";
 	}
 

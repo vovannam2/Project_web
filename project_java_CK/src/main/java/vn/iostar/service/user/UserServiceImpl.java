@@ -11,10 +11,6 @@ import vn.iostar.repository.UserRepository;
 public class UserServiceImpl implements IUserService{
     @Autowired
     UserRepository userRepository;
-	@Override
-	public Optional<User> findByUsername(String username) {
-		return userRepository.findByUsername(username);
-	}
 
 	public UserServiceImpl(UserRepository userRepository) {
 		super();
