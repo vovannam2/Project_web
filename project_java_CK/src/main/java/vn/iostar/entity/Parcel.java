@@ -4,18 +4,27 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 
-
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "parcels")
 public class Parcel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer parcelId;
+    // mã vận đơn: -> know user id:
+    @Column(name = "ladingCode", unique = true, nullable = false)
+    private String ladingCode;
+
+    @PrePersist
+    private void generateLadingCode() {
+        this.ladingCode = "LDC-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+    }
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -50,6 +59,7 @@ public class Parcel {
     //Thêm chi phí vận chuyển
     @JoinColumn(name = "shipping_fee")
     private int shippingFee;
+
 
     @ManyToOne
     @JoinColumn(name = "shipping_type_id")

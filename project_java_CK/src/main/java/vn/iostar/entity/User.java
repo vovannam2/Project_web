@@ -11,11 +11,14 @@ import java.util.List;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
-@Data
+import javax.print.attribute.standard.DateTimeAtCompleted;
+
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
 @Entity
+@Getter
+@Setter
 @Table(name = "users")
 public class User {
     @Id
@@ -34,7 +37,12 @@ public class User {
     private String fullname;
 
     private String phone;
-    private String images;
+
+    @Transient
+    private MultipartFile images;
+
+    private String imagePath;
+
     
     @JoinColumn(name = "create_date")
     private LocalDateTime createDate;
@@ -44,7 +52,7 @@ public class User {
     @Column(columnDefinition = "NVARCHAR(500)")
     private String address;
     @Column(nullable = false)
-    private Boolean status;
+    private int status;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = true)
@@ -54,9 +62,18 @@ public class User {
 
     @OneToMany(mappedBy = "shipper")
     private List<Parcel> shippedParcels;
+
     @OneToMany(mappedBy = "driver")
     private List<RouteHistory> routeHistories;
     
+    @Transient
+    public String getAvatarImagePath(){
+        if(imagePath == null || userId == null){
+            return null;
+        }
+        return "/update-avatar/" + userId +"/"+ imagePath;
+    }
+
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private EmployeeOffice employOffice;
 }

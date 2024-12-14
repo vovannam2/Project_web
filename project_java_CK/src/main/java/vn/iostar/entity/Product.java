@@ -1,16 +1,14 @@
 package vn.iostar.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "products")
