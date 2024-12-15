@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 
 import vn.iostar.entity.ParcelType;
 import vn.iostar.entity.User;
+import vn.iostar.models.ParcelDTO;
 
 public interface IParcelTypeService {
 
@@ -30,4 +31,5 @@ public interface IParcelTypeService {
 
 	long count();
 
+	
 }

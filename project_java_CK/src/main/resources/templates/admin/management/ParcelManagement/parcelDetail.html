@@ -23,8 +23,9 @@
         <div class="card mb-4">
             <div class="card-header bg-primary text-white">Details</div>
             <div class="card-body">
-                <p><strong>ID:</strong> <span th:text="${parcel.parcelId}"></span></p>
-                <p><strong>User Name:</strong> <span th:text="${parcel.userName}"></span></p>
+                <p><strong>ID Parcel:</strong> <span th:text="${parcel.parcelId}"></span></p>
+                <p><strong>Customer Name:</strong> <span th:text="${parcel.userName}"></span></p>
+				<p><strong>Customer ID:</strong> <span th:text="${parcel.userId}"></span></p>
                 <p><strong>Recipient Name:</strong> <span th:text="${parcel.recipientName}"></span></p>
                 <p><strong>Shipper Name:</strong> <span th:text="${parcel.shipperName}"></span></p>
                 <p><strong>Weight:</strong> <span th:text="${parcel.weight}"></span></p>
@@ -33,12 +34,16 @@
                 <p><strong>Shipping Type:</strong> <span th:text="${parcel.shippingType}"></span></p>
                 <p><strong>Created Date:</strong> <span th:text="${parcel.createDate}"></span></p>
                 <p><strong>Complete Date:</strong> <span th:text="${parcel.completeDate}"></span></p>
+				<p><strong>Start Office:</strong> <span th:text="${parcel.startOffice}"></span></p>
+				<p><strong>Destination Office:</strong> <span th:text="${parcel.destinationOffice}"></span></p>
+				<p><strong>Payment Method:</strong> <span th:text="${parcel.paymentMethod}"></span></p>
+				<p><strong>Recipient ID:</strong> <span th:text="${parcel.recipientId}"></span></p>
             </div>
         </div>
 
         <!-- Action Button -->
         <div class="text-center">
-            <a th:href="@{/admin/management/AdminAccountManagement/parcels}" class="btn btn-secondary">
+            <a th:href="@{/admin/management/Parcel-Management/parcels}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Back to List
             </a>
         </div>

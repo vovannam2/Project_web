@@ -24,6 +24,25 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
 
+        <!-- Filter by Start Office -->
+        <form th:action="@{/admin/management/Parcel-Management/parcels/filter}" method="get" class="mb-4">
+            <div class="input-group">
+                <select name="address" class="form-select" required>
+                    <option value="" disabled selected>Chọn địa chỉ văn phòng bắt đầu</option>
+                    <option th:each="office : ${postOffices}" th:value="${office}" th:text="${office}"></option>
+                </select>
+                <button type="submit" class="btn btn-primary">Lọc</button> <!-- Nút lọc -->
+            </div>
+        </form>
+
+        <!-- Search Bar -->
+        <form th:action="@{/admin/management/Parcel-Management/parcels/filter}" method="get" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Tìm kiếm theo tên người dùng" aria-label="Search">
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button> <!-- Nút tìm kiếm -->
+            </div>
+        </form>
+
         <!-- Shipping Types Table -->
         <div class="card">
             <div class="card-header bg-primary text-white">List of Parcels</div>
@@ -35,25 +54,35 @@
                             <th>User Name</th>
                             <th>Recipient Name</th>
                             <th>Shipper Name</th>
-                            <th>Status</th>
+                            <th>Current Status</th>
+                            <th>New Status</th>
                             <th>Weight</th>
                             <th>Note</th>
+                            <th>Start Office</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="parcel : ${parcels}">
                             <td th:text="${parcel.parcelId}"></td>
-                            <td th:text="${parcel.user.fullname}"></td>
-                            <td th:text="${parcel.recipient != null ? parcel.recipient.fullname : 'N/A'}"></td>
-                            <td th:text="${parcel.shipper != null ? parcel.shipper.fullname : 'N/A'}"></td>
+                            <td th:text="${parcel.userName}"></td>
+                            <td th:text="${parcel.recipientName != null ? parcel.recipientName : 'N/A'}"></td>
+                            <td th:text="${parcel.shipperName != null ? parcel.shipperName : 'N/A'}"></td>
                             <td th:text="${parcel.status}"></td>
+                            <td>
+                                <form th:action="@{/admin/management/Parcel-Management/parcels/updateStatus/{id}(id=${parcel.parcelId})}" method="post" class="d-inline">
+                                    <select name="status" class="form-select" required>
+                                        <option value="" disabled selected>Chọn trạng thái</option>
+                                        <option th:each="status : ${statuses}" th:value="${status}" th:text="${status}"></option>
+                                    </select>
+                                    <button type="submit" class="btn btn-primary btn-sm ms-2">Cập Nhật</button>
+                                </form>
+                            </td>
                             <td th:text="${parcel.weight}"></td>
                             <td th:text="${parcel.note}"></td>
+                            <td th:text="${parcel.startOffice}"></td>
                             <td>
-                                <!-- Detail Button -->
-                                <a th:href="@{/admin/management/AdminAccountManagement/parcels/parcelDetail/{id}(id=${parcel.parcelId})}"
-                                   class="btn btn-warning btn-sm me-1">
+                                <a th:href="@{/admin/management/Parcel-Management/parcels/parcelDetail/{id}(id=${parcel.parcelId})}" class="btn btn-warning btn-sm me-1">
                                     <i class="fas fa-edit"></i> Detail
                                 </a>
                             </td>
