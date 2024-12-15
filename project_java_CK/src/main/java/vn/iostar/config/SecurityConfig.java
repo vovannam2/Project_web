@@ -24,14 +24,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(
-    request -> request.requestMatchers("/home/**", "/account/**").permitAll()
-                                .requestMatchers("/account_handle").hasAuthority("ROLE_USER")
+    request -> request.requestMatchers( "/home/**", "/account/**").permitAll()
+                                .requestMatchers("/account_handle", "/payment/**", "/api/**").hasAuthority("ROLE_USER")
                                 .requestMatchers("/ws/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
-                )
-                        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+                ).sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.headers(headers -> headers
             .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
         );

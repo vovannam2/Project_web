@@ -1,4 +1,4 @@
-package vn.iostar.controllers.Payment;
+package vn.iostar.controllers.User;
 
 
 import java.io.UnsupportedEncodingException;
@@ -6,7 +6,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashMap;
@@ -20,18 +19,17 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import vn.iostar.config.VNPayConfig;
 
 
 @Controller
-@RequestMapping("api/payment")
+@RequestMapping("/api/payment")
 public class VNPayController {
 
     public static String dataOrder;
 
     @GetMapping("/create_payment")
-    public String createPayment(@RequestParam("cost") Long cost, @RequestParam(value = "data", defaultValue = "VN pay") String data) throws UnsupportedEncodingException {
+    public String createPayment(@RequestParam("cost") Float cost, @RequestParam(value = "data", defaultValue = "VN pay") String data) throws UnsupportedEncodingException {
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String vnp_TxnRef = VNPayConfig.getRandomNumber(8);

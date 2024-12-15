@@ -23,11 +23,9 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     private static final String ADMIN_EMAIL = "mecafo2287@ckuer.com"; // Địa chỉ email của admin
     // Lưu trữ session của admin và user
     private static Map<String, WebSocketSession> sessions = new HashMap<>();
-
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
         String userMessage = message.getPayload(); // Nội dung tin nhắn
-
         // Nếu đây là tin nhắn đầu tiên (xác định vai trò)
         if (userMessage.startsWith("role:")) {
             if (userMessage.equals("role:admin")) {
@@ -39,7 +37,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
             }
             return;
         }
-
         // Xử lý tin nhắn từ user
         if (session.equals(sessions.get("user"))) {
             sendEmailToAdmin(userMessage); // Gửi email tới admin
@@ -50,7 +47,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
                 adminSession.sendMessage(new TextMessage("Tin nhắn từ user: " + userMessage));
             }
         }
-
         // Xử lý tin nhắn từ admin
         else if (session.equals(sessions.get("admin"))) {
             WebSocketSession userSession = sessions.get("user");
@@ -75,6 +71,5 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         sessions.values().remove(session);
     }
-
 }
 
