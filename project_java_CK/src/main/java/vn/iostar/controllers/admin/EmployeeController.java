@@ -84,17 +84,17 @@ public class EmployeeController {
 		return "admin/employees/list";
 	}
 
-	@RequestMapping("/addManager")
-	public String addManager(ModelMap model) {
-		UserModel managerModel = new UserModel();
-		managerModel.setIsEdit(false);
-		managerModel.setStatus(true);
-		model.addAttribute("employee", managerModel);
+	@RequestMapping("/addShipper")
+	public String addShipper(ModelMap model) {
+		UserModel shipperModel = new UserModel();
+		shipperModel.setIsEdit(false);
+		shipperModel.setStatus(true);
+		model.addAttribute("employee", shipperModel);
 		List<PostOffice> office = officeService.findAll();
 		model.addAttribute("offices", office);
-		model.addAttribute("roleId", roleService.findByName("Manager").getRoleId());
+		model.addAttribute("roleId", roleService.findByName("Shipper").getRoleId());
 		model.addAttribute("selectedOfficeId", office.get(0).getOfficeId());
-		return "admin/employees/addOrEditManager";
+		return "admin/employees/addOrEditShipper";
 	}
 
 	@RequestMapping("/addAdmin")
@@ -122,7 +122,7 @@ public class EmployeeController {
 				List<PostOffice> office = officeService.findAll();
 				model.addAttribute("offices", office);
 				model.addAttribute("selectedOfficeId", entity.getEmployOffice().getOffice().getOfficeId());
-				return new ModelAndView("admin/employees/addOrEditManager", model);
+				return new ModelAndView("admin/employees/addOrEditShipper", model);
 			} else {
 				return new ModelAndView("admin/employees/addOrEditAdmin", model);
 			}
@@ -172,8 +172,8 @@ public class EmployeeController {
 		return new ModelAndView("forward:/admin/employees", model);
 	}
 
-	@PostMapping("saveOrUpdateManager")
-	public ModelAndView saveOrUpdateManager(ModelMap model, @Valid @ModelAttribute("employee") UserModel userModel,
+	@PostMapping("saveOrUpdateShipper")
+	public ModelAndView saveOrUpdateShipper(ModelMap model, @Valid @ModelAttribute("employee") UserModel userModel,
 			@RequestParam("officeId") Integer officeId, @RequestParam("roleId") Integer roleId, BindingResult result) {
 		if (result.hasErrors()) {
 			model.addAttribute("message", "Dữ liệu không hợp lệ. Vui lòng kiểm tra lại!");
@@ -182,7 +182,7 @@ public class EmployeeController {
 			List<PostOffice> office = officeService.findAll();
 			model.addAttribute("offices", office);
 			model.addAttribute("roleId", roleService.findByName("Admin").getRoleId());
-			return new ModelAndView("admin/employees/addOrEditManager", model);
+			return new ModelAndView("admin/employees/addOrEditShipper", model);
 		}
 		if (userService.existsByEmail(userModel.getEmail()) && userModel.getIsEdit() == false) {
 			model.addAttribute("message", "Email này đã tồn tại trong hệ thống. Vui lòng chọn email khác!");
@@ -191,7 +191,7 @@ public class EmployeeController {
 			List<PostOffice> office = officeService.findAll();
 			model.addAttribute("offices", office);
 			model.addAttribute("roleId", roleService.findByName("Admin").getRoleId());
-			return new ModelAndView("admin/employees/addOrEditManager", model);
+			return new ModelAndView("admin/employees/addOrEditShipper", model);
 		}
 		User entity = new User();
 		BeanUtils.copyProperties(userModel, entity);
@@ -210,7 +210,7 @@ public class EmployeeController {
 		if (userModel.getIsEdit() == true) {
 			message = "Chỉnh sửa thành công!";
 		} else {
-			message = "Thêm Manager mới thành công!";
+			message = "Thêm Shipper mới thành công!";
 		}
 		model.addAttribute("message", message);
 		List<Role> roles = roleService.findExceptUserShipper();
