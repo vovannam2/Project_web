@@ -49,26 +49,34 @@ public class Parcel {
     @ManyToOne
     @JoinColumn(name = "shipper_id", nullable = true)
     private User shipper;
-    private String name;
-    private String image;
-    private String description;
+
     private Float weight;
+    
+    private String image;
 
     private String status;
 
     private String note;
     
     //Thêm chi phí vận chuyển
-    
+    @JoinColumn(name = "shipping_fee")
     private int shippingFee;
+    
+    @ManyToOne
+    @JoinColumn(name = "shipping_type_id")
+    private ShippingType shippingType;
+    
+    @ManyToOne
+    @JoinColumn(name = "parcel_type_id", nullable = false)
+    private ParcelType parcelType;
 
 
     private LocalDateTime createDate;
 
     private LocalDateTime completeDate;
 
-    @OneToMany(mappedBy = "parcel")
-    private List<ParcelDetail> parcelDetails;
+//    @OneToMany(mappedBy = "parcel")
+//    private List<ParcelDetail> parcelDetails;
 
     @OneToMany(mappedBy = "parcel")
     private List<RouteHistory> routeHistories;

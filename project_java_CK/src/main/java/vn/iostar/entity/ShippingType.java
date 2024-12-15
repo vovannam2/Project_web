@@ -1,16 +1,18 @@
 package vn.iostar.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
 @Entity
-@Getter
-@Setter
 @Table(name = "shipping_types")
 public class ShippingType {
     @Id

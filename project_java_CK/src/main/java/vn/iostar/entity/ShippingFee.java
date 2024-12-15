@@ -1,15 +1,17 @@
 package vn.iostar.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import vn.iostar.embeddedld.ShippingFeeId;
 
+@Data
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
 @Entity
-@Getter
-@Setter
 @Table(name = "shipping_fee")
 public class ShippingFee {
 
@@ -21,14 +23,10 @@ public class ShippingFee {
     @JoinColumn(name = "shipping_type_id", nullable = false)
     private ShippingType shippingType;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @MapsId("parcelTypeId")
-	 * 
-	 * @JoinColumn(name = "parcel_type_id", nullable = false) private ParcelType
-	 * parcelType;
-	 */
+    @ManyToOne
+    @MapsId("parcelTypeId")
+    @JoinColumn(name = "parcel_type_id", nullable = false)
+    private ParcelType parcelType;
 
     private Float fee;
 

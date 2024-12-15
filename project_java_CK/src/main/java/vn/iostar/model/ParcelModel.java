@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import vn.iostar.entity.ParcelDetail;
+import vn.iostar.entity.ParcelType;
 import vn.iostar.entity.PaymentMethod;
 import vn.iostar.entity.PostOffice;
 import vn.iostar.entity.Recipient;
@@ -32,7 +33,6 @@ public class ParcelModel {
     private PostOffice startOffice;
 
     private PostOffice destinationOffice;
-    private String name;
     private String image;
     private String description;
     
@@ -52,7 +52,7 @@ public class ParcelModel {
 
     private LocalDateTime completeDate;
 
-    private List<ParcelDetail> parcelDetails;
+    private ParcelType parcelType;
     private List<RouteHistory> routeHistories;
     private Boolean isEdit = false;
 }
