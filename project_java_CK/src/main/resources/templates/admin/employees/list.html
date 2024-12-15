@@ -95,6 +95,7 @@ svg {
 									<th>Status</th>
 									<th></th>
 									<th></th>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -112,9 +113,9 @@ svg {
 									<td th:text="${item.name}"
 										style="width: 50px; word-wrap: break-word; white-space: normal;"></td>
 									<td
-										th:text="${item.officeId == null ? '------' : item.officeId}"
+										th:text="${item.officeId == null ? '' : item.officeId}"
 										style="width: 70px; word-wrap: break-word; white-space: normal;"></td>
-									<td th:text="${item.status == null ? '------' : item.status}"
+									<td th:text="${item.status == null ? '' : item.status}"
 										style="width: 70px; word-wrap: break-word; white-space: normal;"></td>
 									<td style="width: 80px;"><a class="btn btn-warning"
 										style="height: 40px; display: flex; justify-content: center; align-items: center; padding: 0;"

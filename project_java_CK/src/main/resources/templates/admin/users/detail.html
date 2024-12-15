@@ -43,7 +43,7 @@
 					<div class="row align-items-start">
 						<div class="nav flex-column nav-pills col-md-3" id="v-pills-tab"
 							role="tablist" aria-orientation="vertical">
-							<img th:src="${user.imagePath}" alt="User Image"
+							<img th:src="@{${user.avatarImagePath}}" alt="User Image"
 								class="img-fluid"
 								style="width: 100%; height: 300px; border-radius: 10px; margin-bottom: 20px;"
 								onerror="this.onerror=null; this.src='/security/img/no-image.png';" />
@@ -66,7 +66,6 @@
 							<div class="tab-pane fade show active" style="margin-left: 15px;"
 								id="v-pills-home" role="tabpanel"
 								aria-labelledby="v-pills-home-tab" tabindex="0">
-								<form action="/web/users/saveOrUpdate" method="POST">
 									<div class="card">
 										<div class="card-body">
 											<h1 class="h3 mb-0 text-gray-800" th:text="${user.fullname}"
@@ -107,7 +106,6 @@
 										</div>
 
 									</div>
-								</form>
 							</div>
 
 							<!-- Đơn hàng Tab -->
