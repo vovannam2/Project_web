@@ -24,8 +24,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(
-    request -> request.requestMatchers( "/home/**", "/account/**").permitAll()
-                                .requestMatchers("/account_handle", "/payment/**", "/api/**").hasAuthority("ROLE_USER")
+    request -> request.requestMatchers( "/home/**").permitAll()
+                                .requestMatchers("/account_handle", "/payment/**", "/api/**", "/account/**").hasAuthority("ROLE_USER")
                                 .requestMatchers("/ws/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
