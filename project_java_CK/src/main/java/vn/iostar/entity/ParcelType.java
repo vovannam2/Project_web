@@ -2,14 +2,16 @@ package vn.iostar.entity;
 
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
 @AllArgsConstructor
 @Builder
-@Getter
-@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "parcel_types")
@@ -31,4 +33,3 @@ public class ParcelType {
 
     // Getters and Setters
 }
-

@@ -16,10 +16,10 @@ public class ParcelDetail {
 	@EmbeddedId
 	private ParcelDetailId id;
 
-	@OneToOne
-	@MapsId("parcelId")
-	@JoinColumn(name = "parcel_id", nullable = false)
-	private Parcel parcel;
+//	@OneToOne
+//	@MapsId("parcelId")
+//	@JoinColumn(name = "parcel_id", nullable = false)
+//	private Parcel parcel;
 
 	@ManyToOne
 	@MapsId("productId")
