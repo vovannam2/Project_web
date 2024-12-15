@@ -5,10 +5,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -28,17 +25,16 @@ public class WHomeController {
 	UserFunctionServiceImpl functionService;
 
 	@GetMapping("/home_user")
-	public String homeUser(Model model, HttpServletRequest request)
+	public String homeUser(HttpSession session, Model model)
 	{
-		User user = (User)request.getSession().getAttribute("user");
+		User user = (User)session.getAttribute("user");
 		model.addAttribute("user",user);
 		if(user!= null) {
-			System.out.println(user.getUserId());
-			request.getSession().setAttribute("user", user);
+			session.setAttribute("user", user);
+			System.out.println("sessionnn home:" + user.getUserId() + " role?" + user.getRole().getName());
 			List<Object[]> productDetails = functionService.getUserWithParcelsAndProducts(user.getUserId());
 			model.addAttribute("productDetails", productDetails);
 		}
-		request.getSession().setAttribute("user", user);
 		return "/user/home-user";
 	}
 	@GetMapping("/home_shipper")
@@ -52,4 +48,5 @@ public class WHomeController {
 	public String loadChat() {
 		return "user/Contact_manager";
 	}
+
 }

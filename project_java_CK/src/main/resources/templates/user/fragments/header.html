@@ -42,12 +42,13 @@
 									<span>Customer</span>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-									<li><a th:href="@{/account_handle/layoutEdit}" class="dropdown-item">Quản lý tài khoản</a></li>
+									<li><a href="/account_handle/layoutEdit" class="dropdown-item">Quản lý tài khoản</a></li>
 									<li><a th:href="@{/orders.html}" class="dropdown-item">Đơn hàng của tôi</a></li>
-									<li><a th:href="@{/account_handle/ChangePassword}" class="dropdown-item">Change Password</a></li>
+									<li><a href="/account_handle/change_password" class="dropdown-item">Change Password</a></li>
+									<li><a th:href="@{/payment/create_payment}" class="dropdown-item">Đơn hàng chưa thanh toán</a></li>
 									<li><a th:href="@{/help.html}" class="dropdown-item">Trợ giúp</a></li>
 									<li><hr class="dropdown-divider"></li>
-									<li><a th:href="@{/account/logout}" class="dropdown-item text-danger">Đăng xuất</a></li>
+									<li><a href="/account/logout" class="dropdown-item text-danger">Đăng xuất</a></li>
 								</ul>
 							</div>
 							<div>

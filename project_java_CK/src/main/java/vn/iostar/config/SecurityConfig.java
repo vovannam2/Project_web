@@ -19,25 +19,25 @@ public class SecurityConfig {
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        System.out.println("JwtAuthenticationFilter initialized!");
     }
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(
-                        request -> request.requestMatchers("/**").permitAll()
+    request -> request.requestMatchers("/home/**", "/account/**").permitAll()
+                                .requestMatchers("/account_handle").hasAuthority("ROLE_USER")
                                 .requestMatchers("/ws/**").permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        http
-                .headers(headers -> headers
-                        .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin
-                        )
-                );
+                        .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http.headers(headers -> headers
+            .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
+        );
         http.csrf(AbstractHttpConfigurer::disable);
         return http.build();
-    }
+}
 
     @Bean
         public PasswordEncoder passwordEncoder (){

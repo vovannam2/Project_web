@@ -45,8 +45,8 @@ public class CreateUsersServiceImpl implements ICreateUsersService {
             //return(passwordEncoder.matches(password, user.getPassword()));
         boolean result =  passwordEncoder.matches(password, user.getPassword());
         if(result){
-            System.out.println("ma token:" + auth.generateToken(user.getEmail()));
-            return auth.generateToken(user.getEmail());
+            System.out.println("ma token:" + auth.generateToken(user.getEmail(), user.getRole().getName()));
+            return auth.generateToken(user.getEmail(),user.getRole().getName());
         }else {
             return null;
         }
