@@ -62,7 +62,7 @@ public class UserFunctionServiceImpl {
         ).collect(Collectors.toList());
         return new ParcelRouteModel(
                 parcel.getLadingCode(),
-                parcel.getUser().getFullName(),
+                parcel.getUser().getFullname(),
                 parcel.getStatus(),
                 routeDetails
         );

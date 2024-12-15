@@ -32,13 +32,13 @@ public class ShipperController {
 	@GetMapping("/listPacel")
 	public String index(HttpSession session, Model model) {
 		// Lấy đối tượng User từ session
-		User currentUser = (User) session.getAttribute("currentUser");
-		// Kiểm tra nếu người dùng chưa đăng nhập
-		if (currentUser == null) {
-			return "redirect:/security/login"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
-		}
-		// Lấy shipperId từ entity User
-		Integer shipperId = currentUser.getUserId();
+//		User currentUser = (User) session.getAttribute("currentUser");
+//		// Kiểm tra nếu người dùng chưa đăng nhập
+//		if (currentUser == null) {
+//			return "redirect:/security/login"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+//		}
+//		// Lấy shipperId từ entity User
+		Integer shipperId = 2;
 		// Lấy danh sách các đơn hàng dựa trên shipperId
 		List<Parcel> parcels = shiperService.findParcelsByShipperId(shipperId);
 		// Kiểm tra nếu không có đơn hàng

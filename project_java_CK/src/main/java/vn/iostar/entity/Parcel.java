@@ -49,7 +49,9 @@ public class Parcel {
     @ManyToOne
     @JoinColumn(name = "shipper_id", nullable = true)
     private User shipper;
-
+    private String name;
+    private String image;
+    private String description;
     private Float weight;
 
     private String status;
@@ -57,13 +59,9 @@ public class Parcel {
     private String note;
     
     //Thêm chi phí vận chuyển
-    @JoinColumn(name = "shipping_fee")
+    
     private int shippingFee;
 
-
-    @ManyToOne
-    @JoinColumn(name = "shipping_type_id")
-    private ShippingType shippingType;
 
     private LocalDateTime createDate;
 

@@ -21,10 +21,14 @@ public class ShippingFee {
     @JoinColumn(name = "shipping_type_id", nullable = false)
     private ShippingType shippingType;
 
-    @ManyToOne
-    @MapsId("parcelTypeId")
-    @JoinColumn(name = "parcel_type_id", nullable = false)
-    private ParcelType parcelType;
+	/*
+	 * @ManyToOne
+	 * 
+	 * @MapsId("parcelTypeId")
+	 * 
+	 * @JoinColumn(name = "parcel_type_id", nullable = false) private ParcelType
+	 * parcelType;
+	 */
 
     private Float fee;
 

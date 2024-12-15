@@ -27,6 +27,6 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<ParcelDetail> parcelDetails;
-
+    
     // Getters and Setters
 }

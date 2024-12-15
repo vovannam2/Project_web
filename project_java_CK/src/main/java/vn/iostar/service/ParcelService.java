@@ -1,8 +1,12 @@
 package vn.iostar.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import vn.iostar.entity.Parcel;
@@ -87,4 +91,28 @@ public class ParcelService implements IParcelService{
 		return parcelRepository.findParcelOneCustomer(id);
 	}
 
+	@Override
+	public <S extends Parcel> S save(S entity) {
+		return parcelRepository.save(entity);
+	}
+
+	@Override
+	public List<Parcel> findAll() {
+		return parcelRepository.findAll();
+	}
+
+	@Override
+	public void deleteById(Integer id) {
+		parcelRepository.deleteById(id);
+	}
+	@Override
+	public Page<Parcel> getAll(Integer pageNo) {
+		Pageable pageable = PageRequest.of(pageNo - 1, 10);
+		return parcelRepository.findAll(pageable);
+	}
+
+	@Override
+	public Optional<Parcel> findById(Integer id) {
+		return parcelRepository.findById(id);
+	}
 }
