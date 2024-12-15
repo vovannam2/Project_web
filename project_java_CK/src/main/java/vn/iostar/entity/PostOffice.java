@@ -18,7 +18,6 @@ public class PostOffice {
     @Column(name = "office_id")
     private Integer officeId;
 
-    @Column(name = "address", columnDefinition = "NVARCHAR(255) NULL")
     private String address;
 
     private String phone;

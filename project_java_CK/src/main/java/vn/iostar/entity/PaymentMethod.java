@@ -16,12 +16,12 @@ public class PaymentMethod {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer paymentId;
 
-    @Column(name = "name", nullable = false, columnDefinition = "NVARCHAR(500)")
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private Boolean status;
-    
-    @Column(name = "description", columnDefinition = "NVARCHAR(500) NULL")
+
     private String description;
 
     @OneToMany(mappedBy = "paymentMethod")
