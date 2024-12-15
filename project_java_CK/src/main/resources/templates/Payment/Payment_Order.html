@@ -133,7 +133,7 @@
 
         <div class="text-end my-4 total-amount">
             <strong>Tổng giá trị của tất cả các đơn hàng:</strong>
-            <span class="fw-bold" th:text="${totalAmount}" name = "cost"></span> VNĐ
+            <input type="text" name="cost"  th:value="${totalAmount}" readonly="readonly" />
         </div>
 
         <div class="text-center">

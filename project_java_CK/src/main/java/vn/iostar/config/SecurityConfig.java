@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig  {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
     public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
@@ -34,7 +34,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(
                 request -> request.requestMatchers( "/home/**").permitAll()
-                                            .requestMatchers("/account_handle", "/payment/**", "/api/**", "/account/**").hasAuthority("ROLE_USER")
+                                            .requestMatchers("/account_handle/**", "/payment/**", "/api/**", "/account/**").hasAuthority("ROLE_USER")
                                             .requestMatchers("/ws/**").permitAll()
                                             .anyRequest()
                                             .authenticated()

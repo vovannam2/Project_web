@@ -55,5 +55,4 @@ public class User {
         }
         return "/update-avatar/" + userId +"/"+ imagePath;
     }
-
 }

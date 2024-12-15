@@ -31,13 +31,14 @@ public class PaymentController {
     @GetMapping("/create_payment") // Xử lý thanh toán
     public String createPayment( HttpSession session, Model model) {
         User user = (User)session.getAttribute("user");
-        model.addAttribute("user", user);
+
+        model.addAttribute("user",user);
         Map<String, Object> data1 = paymentService.getUnpaidParcelsWithTotal(user.getUserId());
-        // Gửi dữ liệu qua model để render giao diện
+            // Gửi dữ liệu qua model để render giao diện
         model.addAttribute("parcels", data1.get("parcels"));
         model.addAttribute("totalAmount", data1.get("totalAmount"));
 
-        // Chuyển hướng tới trang thành công
+        // Chuyển hướsng tới trang thành công
         return "/Payment/Payment_Order";
     }
 
