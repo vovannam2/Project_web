@@ -5,7 +5,9 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -24,9 +26,12 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 //@RestController
+@Slf4j
 @Controller
 @RequestMapping("/account")
 public class Register_Login_User {
+    @Autowired
+    HttpSession session;
     @Autowired
     CreateUsersServiceImpl userService;
     @GetMapping("/register")
@@ -74,7 +79,7 @@ public class Register_Login_User {
     @PostMapping("/login")
     public String loginUser(@RequestParam String email,
                             @RequestParam String password,
-                            HttpServletRequest request,
+                            HttpServletRequest request, HttpServletResponse response,
                             RedirectAttributes redirectAttributes) {
         String token = userService.loginUser(email, password);
         System.out.println(token);
@@ -83,8 +88,11 @@ public class Register_Login_User {
             return "redirect:/account/login_account"; // Quay lại form đăng nhập với thông báo lỗi
         }else {
             User user = userService.getUser(email);
-            request.getSession().setAttribute("jwt_token", token);
-            request.getSession().setAttribute("user", user);
+            Cookie jwtCookie = new Cookie("jwt_token", token);
+            jwtCookie.setHttpOnly(true);
+            jwtCookie.setPath("/");
+            response.addCookie(jwtCookie);
+            session.setAttribute("user", user);
             redirectAttributes.addFlashAttribute("user", user);
             if (user.getRole().getName().equals("USER")) {
                 return "redirect:/home/home_user"; // Chuyển hướng đến trang home nếu đăng nhập thành công
@@ -92,6 +100,7 @@ public class Register_Login_User {
                 return "redirect:/home/home_shipper";
             }
         }
+
     }
     @GetMapping("/logout")
     public String Logout(HttpSession session) {

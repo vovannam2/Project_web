@@ -4,6 +4,17 @@
 	  layout:decorate="~{user/config_layout/layout-user.html}" lang="en">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script>
+		const token = response.headers.get("Authorization");
+
+		if (token) {
+			// Lưu token vào localStorage
+			localStorage.setItem("jwt_token", token); // Lưu trong localStorage
+
+			// Hoặc nếu bạn muốn lưu trong sessionStorage
+			sessionStorage.setItem("jwt_token", token); // Lưu trong sessionStorage
+		}
+	</script>
 	<style>
 		/* Toàn bộ giao diện */
         body {
@@ -251,8 +262,7 @@
 									<p class="card-text">Ngày đặt: <span th:text="${productDetail[4]}"></span></p>
 									<p class="card-text">Ngày giao hàng: <span th:text="${productDetail[5]}"></span></p>
 									<p class="card-text">Trạng thái: <span th:text="${productDetail[8]}"></span></p>
-									<p class="card-text">Mô tả sản phẩm:</p>
-									<textarea readonly class="form-control mb-3" th:text="${productDetail[7]}"></textarea>
+									<p class="card-text"> Mô tả sản phẩm: <textarea readonly class="form-control mb-3" th:text="${productDetail[7]}"></textarea></p>
 									<a href="#" class="btn btn-primary btn-block">Xem chi tiết</a>
 								</div>
 							</div>

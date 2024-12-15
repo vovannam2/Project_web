@@ -21,25 +21,29 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-	@Bean
+    public SecurityConfig(JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+        System.out.println("JwtAuthenticationFilter initialized!");
+    }
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-        .csrf().disable() // Tắt CSRF nếu không cần thiết
-        .authorizeRequests()
-            .anyRequest().permitAll() // Cho phép tất cả các request mà không cần xác thực
-        .and()
-        .formLogin().disable() // Tắt trang login mặc định của Spring Security
-        .httpBasic().disable() // Tắt xác thực HTTP Basic
-        .logout()
-            .logoutUrl("/logout") // Đảm bảo đường dẫn logout đúng
-            .logoutSuccessUrl("/") // Chuyển hướng về trang chủ sau khi đăng xuất (hoặc trang bạn muốn)
-            .invalidateHttpSession(true) // Đảm bảo xóa session khi logout
-            .deleteCookies("JSESSIONID"); // Xóa cookie session khi logout
+        http.authorizeHttpRequests(
+    request -> request.requestMatchers( "/home/**").permitAll()
+                                .requestMatchers("/account_handle", "/payment/**", "/api/**", "/account/**").hasAuthority("ROLE_USER")
+                                .requestMatchers("/ws/**").permitAll()
+                                .anyRequest()
+                                .authenticated()
+                ).sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+        http.headers(headers -> headers
+            .frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin)
+        );
+        http.csrf(AbstractHttpConfigurer::disable);
+        return http.build();
+}
 
-    return http.build();
-    }
-	@Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Sử dụng BCrypt để mã hóa mật khẩu
-    }
+    @Bean
+        public PasswordEncoder passwordEncoder (){
+            return new BCryptPasswordEncoder(10 );
+        }
 }

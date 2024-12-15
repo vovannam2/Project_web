@@ -3,7 +3,9 @@ package vn.iostar.controllers.User;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -12,7 +14,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import vn.iostar.entity.Role;
 import vn.iostar.entity.User;
 import vn.iostar.model.ParcelRouteModel;
 import vn.iostar.service.User.UserFunctionServiceImpl;
@@ -23,10 +24,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 // function user - forget pass -
 @Controller
 @RequestMapping("/account_handle")
+@Slf4j
 public class UserFunction {
     @Autowired
     UserFunctionServiceImpl userService;
@@ -70,34 +73,30 @@ public class UserFunction {
         model.addAttribute("parcelRoute", parcelRouteModel);
         return "user/Search_ParcelRoute";
     }
-    @GetMapping("/ChangePassword")
-    public String layoutChangePassword( Model model, HttpServletRequest request, RedirectAttributes redirectAttributes) {
-        User user1 = (User)request.getSession().getAttribute("user");
-        model.addAttribute("user", user1);
-        if (user1 == null) {
-            redirectAttributes.addFlashAttribute("alert", "session time out");
-            return "redirect:/account/login_account";  // Chuyển hướng tới trang đăng nhập hoặc hiển thị lỗi
-        }
-        model.addAttribute("user", user1);
+    @GetMapping("/change_password")
+    public String layoutChangePass(HttpSession session, Model model)
+    {
+
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        authentication.getAuthorities().forEach(grantedAuthority -> log.info(grantedAuthority.getAuthority()));
+        User user = (User)session.getAttribute("user");
+
+        model.addAttribute("user",user);
         return "security/Change_Password";
     }
     @PostMapping("/change-password")
-    public String handleChangePassword(@RequestParam("password") String password, HttpServletRequest request,
+    public String handleChangePassword(HttpSession session, @RequestParam("password") String password,
                                        RedirectAttributes redirectAttributes){
-        User user = (User) request.getSession().getAttribute("user");
-
-
+        User user = (User)session.getAttribute("user");
         if(userService.handleChangePassword(user.getEmail(), password)){
             redirectAttributes.addFlashAttribute("alert", "success change password");
         }else {
             redirectAttributes.addFlashAttribute("alert", "new password don't match old password");
         }
-        HttpSession session = request.getSession();
-        session.setAttribute("user", user);
-        return "redirect:/account_handle/ChangePassword";
+        return "redirect:/account_handle/change_password";
     }
     @GetMapping("/layoutEdit")
-    public String layoutEditUser(Model model, HttpServletRequest request){
+    public String layoutEditUser(HttpServletRequest request,Model model){
         User user = (User) request.getSession().getAttribute("user");
         model.addAttribute("user", user);
         return "user/infoUser";

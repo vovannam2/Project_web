@@ -23,18 +23,17 @@ public class AuthenticationServiceImpl implements IAuthenService {
 
     private static final String SIGN_KEY = "llOLLAGjN8hjLQTCefRomDKTGzzBxZISXiNKTgt9LNai5o1gHSCkFr9uR5cmrNFJ";
     private static final String ISSUER = "ducdung";
-    private static final long TOKEN_EXPIRATION_HOURS = 1L; // Token expires in 1 hour
-
+    private static final long TOKEN_EXPIRATION_HOURS = 6L; // Token expires in 1 hour
     @Override
-    public String generateToken(String userName) {
+    public String generateToken(String email, String roles) {
         try {
             // Create JWT claims
             JWTClaimsSet claims = new JWTClaimsSet.Builder()
-                    .subject(userName)
+                    .subject(email)
                     .issuer(ISSUER)
                     .issueTime(new Date())
                     .expirationTime(Date.from(Instant.now().plus(TOKEN_EXPIRATION_HOURS, ChronoUnit.HOURS)))
-                    .claim("customClaim", "CustomValue") // Example custom claim
+                    .claim("scope", roles) // Example custom claim
                     .build();
             JWSHeader header = new JWSHeader(JWSAlgorithm.HS512);
             SignedJWT signedJWT = new SignedJWT(header, claims);

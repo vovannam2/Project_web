@@ -25,6 +25,7 @@ public class Product {
 
     private Float weight;
 
+    private Float money;
     @OneToMany(mappedBy = "product")
     private List<ParcelDetail> parcelDetails;
     
