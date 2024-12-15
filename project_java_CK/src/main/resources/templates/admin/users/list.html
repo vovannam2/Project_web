@@ -52,8 +52,8 @@ svg {
 								<th>ID User</th>
 								<th>Full Name</th>
 								<th>Email</th>
-								<th>phone</th>
-								<th>Status</th>
+								<th>Phone</th>
+								<th>Address</th>
 								<th>Create Date</th>
 								<th></th>
 							</tr>
@@ -64,7 +64,7 @@ svg {
 								<td th:text="${item.fullname}" style="width: auto; word-wrap:break-word; white-space: normal;"></td>
 								<td th:text="${item.email}" style="width: 180px; word-wrap:break-word; white-space: normal;"></td>
 								<td th:text="${item.phone}" style="width: 100px; word-wrap:break-word; white-space: normal;"></td>
-								<td th:text="${item.status ? 'Active' : 'Inactiver'}" style="width: 80px; word-wrap:break-word; white-space: normal;"></td>
+								<td th:text="${item.address}" style="width: 200px; word-wrap:break-word; white-space: normal;"></td>
 								<td th:text="${item.createDate}" style="width: 170px; word-wrap:break-word; white-space: normal;"></td>
 								<td style="width: 80px;"><a class="btn btn-success"
 									style="height: 40px;"

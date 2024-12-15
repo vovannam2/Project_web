@@ -44,6 +44,9 @@ public class CustomerController {
 		Long totalFee = list.stream()
                 .mapToLong(Parcel::getShippingFee)  // Assuming getShippingFee() returns a double
                 .sum();
+		if (list.size()==0) {
+			model.addAttribute("message", "Khách hàng không có đơn hàng nào để hiển thị");
+		}
 		model.addAttribute("numberParcel", list.size());
 		model.addAttribute("total", totalFee);
 		model.addAttribute("list", list);

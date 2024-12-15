@@ -55,6 +55,7 @@ public class User {
     
     @Column(columnDefinition = "NVARCHAR(500)")
     private String address;
+    
     @Column(nullable = false)
     private int status;
 

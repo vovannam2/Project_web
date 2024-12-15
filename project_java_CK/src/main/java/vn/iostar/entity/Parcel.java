@@ -75,8 +75,8 @@ public class Parcel {
 
     private LocalDateTime completeDate;
 
-//    @OneToMany(mappedBy = "parcel")
-//    private List<ParcelDetail> parcelDetails;
+    @OneToMany(mappedBy = "parcel")
+    private List<ParcelDetail> parcelDetails;
 
     @OneToMany(mappedBy = "parcel")
     private List<RouteHistory> routeHistories;
