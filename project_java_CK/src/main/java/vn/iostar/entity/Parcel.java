@@ -52,7 +52,6 @@ public class Parcel {
 
     private Float weight;
     
-    private String image;
 
     private String status;
 
@@ -66,17 +65,12 @@ public class Parcel {
     @JoinColumn(name = "shipping_type_id")
     private ShippingType shippingType;
     
-    @ManyToOne
-    @JoinColumn(name = "parcel_type_id", nullable = false)
-    private ParcelType parcelType;
-
-
     private LocalDateTime createDate;
 
     private LocalDateTime completeDate;
 
-//    @OneToMany(mappedBy = "parcel")
-//    private List<ParcelDetail> parcelDetails;
+    @OneToMany(mappedBy = "parcel")
+    private List<ParcelDetail> parcelDetails;
 
     @OneToMany(mappedBy = "parcel")
     private List<RouteHistory> routeHistories;
