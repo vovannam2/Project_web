@@ -167,8 +167,38 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public Optional<User> findById(Integer id) {
-		return userRepository.findById(id);
+	public void deleteUserById(Integer id) {
+		// TODO Auto-generated method stub
+		
 	}
+
+	@Override
+	public void saveUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<User> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User findById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findShippers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+//	@Override
+////	public Optional<User> findById(Integer id) {
+////		return userRepository.findById(id);
+////	}
 
 }

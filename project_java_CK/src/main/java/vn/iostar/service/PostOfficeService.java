@@ -56,4 +56,22 @@ public class PostOfficeService implements IPostOfficeService{
 		Pageable pageable = PageRequest.of(pageNo - 1, 10);
 		return officeRepository.findAll(pageable);
 	}
+
+	@Override
+	public List<PostOffice> getAllPostOffices() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> getAllAddresses() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<String> getAllOptionAddress() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

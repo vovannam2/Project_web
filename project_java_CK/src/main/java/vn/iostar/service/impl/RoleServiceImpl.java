@@ -57,4 +57,28 @@ public class RoleServiceImpl implements IRoleService{
 		roleRepository.deleteAll();
 	}
 
+	@Override
+	public List<Role> findExceptUserShipper() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Role> findExceptUser() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Role getById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Role findByName(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import vn.iostar.entity.Parcel;
+import vn.iostar.models.ParcelDTO;
 import vn.iostar.repository.ParcelRepository;
 
 @Service
@@ -114,5 +115,47 @@ public class ParcelService implements IParcelService{
 	@Override
 	public Optional<Parcel> findById(Integer id) {
 		return parcelRepository.findById(id);
+	}
+
+	@Override
+	public ParcelDTO getParcelById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Parcel> getUnassignedParcels() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void assignShipperToParcel(Integer parcelId, Integer shipperId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<String> getAllStatuses() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void updateParcelStatus(Integer id, String status) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<ParcelDTO> findByStartOfficeAddress(String address) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ParcelDTO> findParcelsByStartOfficeAddress(String address) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

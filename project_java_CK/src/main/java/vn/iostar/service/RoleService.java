@@ -47,4 +47,34 @@ public class RoleService implements IRoleService{
 	public Role findByName(String name) {
 		return roleRepository.findByName(name);
 	}
+
+	@Override
+	public void deleteAll() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteAllById(Iterable<? extends Integer> ids) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void delete(Role entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public <S extends Role> S save(S entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

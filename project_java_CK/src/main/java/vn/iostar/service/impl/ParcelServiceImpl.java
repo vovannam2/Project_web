@@ -1,5 +1,6 @@
 package vn.iostar.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import vn.iostar.entity.Parcel;
 import vn.iostar.entity.PostOffice;
@@ -158,5 +159,131 @@ public class ParcelServiceImpl implements IParcelService {
         }
         return new ArrayList<>(); // Trả về danh sách rỗng nếu không tìm thấy
     }
+
+
+	@Override
+	public long revenueOnCurrentDate() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public long revenueOnCurrentWeek() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public long revenueOnCurrentMonth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public long revenueOnCurrentYear() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public List<Long> getMonthlyTotalRevenue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Long> getQuarterlyTotalRevenue() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public long parcelOnCurrentDate() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public long parcelOnCurrentWeek() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public long parcelOnCurrentMonth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public long parcelOnCurrentYear() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public List<Long> getMonthlyTotalParcel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public List<Long> getQuarterlyTotalParcel() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public long countOneCustomer(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public List<Parcel> findParcelOneCustomer(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Optional<Parcel> findById(Integer id) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
+
+
+	@Override
+	public Page<Parcel> getAll(Integer pageNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void deleteById(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public <S extends Parcel> S save(S entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 }
