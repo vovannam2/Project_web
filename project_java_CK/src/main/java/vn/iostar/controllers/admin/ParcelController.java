@@ -15,16 +15,16 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import vn.iostar.entity.Parcel;
 import vn.iostar.entity.PostOffice;
 import vn.iostar.models.ParcelDTO;
-import vn.iostar.repository.PostOfficeRepository;
-import vn.iostar.service.IParcelService;
-import vn.iostar.service.IPostOfficeService;
+import vn.iostar.repository.PostOfficeRepository_M;
+import vn.iostar.service_M.IParcelService_M;
+import vn.iostar.service_M.IPostOfficeService_M;
 
 @Controller
 @RequestMapping("admin/management/Parcel-Management/parcels")
 public class ParcelController {
 //http://localhost:8181/admin/management/AdminAccountManagement/parcels
     @Autowired
-    private IParcelService parcelService;  // Inject service theo interface
+    private IParcelService_M parcelService;  // Inject service theo interface
     
     @GetMapping("")
     public String getAllParcels(Model model) {
@@ -58,10 +58,10 @@ public class ParcelController {
         return "admin/management/ParcelManagement/parcelDetail";  // Tên template Thymeleaf
     }
     @Autowired
-    private PostOfficeRepository postOfficeRepository; // Đảm bảo rằng bạn đã inject repository này
+    private PostOfficeRepository_M postOfficeRepository; // Đảm bảo rằng bạn đã inject repository này
     
     @Autowired
-    private IPostOfficeService postOfficeService; 
+    private IPostOfficeService_M postOfficeService; 
 
     @GetMapping("/filter")
     public String filterParcelsByStartOffice(@RequestParam(required = false) String address, Model model) {

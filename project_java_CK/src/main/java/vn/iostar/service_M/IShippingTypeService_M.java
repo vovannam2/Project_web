@@ -1,4 +1,4 @@
-package vn.iostar.service;
+package vn.iostar.service_M;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +10,7 @@ import org.springframework.data.domain.Sort;
 import vn.iostar.entity.ShippingType;
 import vn.iostar.entity.User;
 
-public interface IShippingTypeService {
+public interface IShippingTypeService_M {
 
 	void deleteAll();
 

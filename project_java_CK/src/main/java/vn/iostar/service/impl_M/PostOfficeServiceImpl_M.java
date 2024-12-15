@@ -1,4 +1,4 @@
-package vn.iostar.service.impl;
+package vn.iostar.service.impl_M;
 
 import java.util.List;
 
@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import vn.iostar.entity.PostOffice;
-import vn.iostar.repository.PostOfficeRepository;
-import vn.iostar.service.IPostOfficeService;
+import vn.iostar.repository.PostOfficeRepository_M;
+import vn.iostar.service_M.IPostOfficeService_M;
 
 @Service
-public class PostOfficeServiceImpl implements IPostOfficeService{
+public class PostOfficeServiceImpl_M implements IPostOfficeService_M{
 
 	@Autowired
-    private PostOfficeRepository postOfficeRepository;
+    private PostOfficeRepository_M postOfficeRepository;
 
     @Override
 	public List<PostOffice> getAllPostOffices() {

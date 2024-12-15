@@ -10,7 +10,7 @@ import vn.iostar.entity.Parcel;
 import vn.iostar.entity.PostOffice;
 
 @Repository
-public interface PostOfficeRepository extends JpaRepository<PostOffice, Integer> {
+public interface PostOfficeRepository_M extends JpaRepository<PostOffice, Integer> {
 	PostOffice findByAddress(String address);
 	
 	List<PostOffice> findAll();

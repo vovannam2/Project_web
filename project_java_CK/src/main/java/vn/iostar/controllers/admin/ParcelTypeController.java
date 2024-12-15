@@ -16,16 +16,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.validation.Valid;
-import vn.iostar.service.IParcelTypeService;
 import vn.iostar.entity.*;
 import vn.iostar.models.ParcelTypeModel;
-import vn.iostar.repository.ParcelTypeRepository;
+import vn.iostar.repository.ParcelTypeRepository_M;
+import vn.iostar.service_M.IParcelTypeService_M;
 
 @Controller
 @RequestMapping("admin/management/shippingManagement/ParcelType")
 public class ParcelTypeController {
 	@Autowired
-	IParcelTypeService parcelTypeService;
+	IParcelTypeService_M parcelTypeService;
 	/*
 	 * @RequestMapping("") public String listUsers(ModelMap model) { List<User>
 	 * listUser = userService.findAll(); model.addAttribute("listUser", listUser);
@@ -33,7 +33,7 @@ public class ParcelTypeController {
 	 */
 	
 	@Autowired
-	private ParcelTypeRepository parcelTypeRepository;  // Đảm bảo tên chính xác là UserRepository
+	private ParcelTypeRepository_M parcelTypeRepository;  // Đảm bảo tên chính xác là UserRepository
 
 	@RequestMapping("")
     public String listUsers(ModelMap model) {

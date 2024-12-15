@@ -1,4 +1,4 @@
-package vn.iostar.service.impl;
+package vn.iostar.service.impl_M;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,18 +10,18 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iostar.repository.*;
+import vn.iostar.service_M.*;
 import vn.iostar.entity.ParcelType;
 import vn.iostar.entity.User;
-import vn.iostar.service.*;
 
 @Service
-public class ParcelTypeServiceImpl implements IParcelTypeService{
+public class ParcelTypeServiceImpl_M implements IParcelTypeService_M{
 
 
 	@Autowired
-	ParcelTypeRepository parcelTypeRepository;
+	ParcelTypeRepository_M parcelTypeRepository;
 
-	public ParcelTypeServiceImpl(ParcelTypeRepository parcelTypeRepository) {
+	public ParcelTypeServiceImpl_M(ParcelTypeRepository_M parcelTypeRepository) {
 		this.parcelTypeRepository = parcelTypeRepository;
 	}
 

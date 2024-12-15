@@ -1,11 +1,11 @@
-package vn.iostar.service;
+package vn.iostar.service_M;
 
 import java.util.List;
 
 import vn.iostar.entity.Parcel;
 import vn.iostar.models.ParcelDTO;
 
-public interface IParcelService {
+public interface IParcelService_M {
 
 	ParcelDTO getParcelById(Integer id);
 

@@ -6,8 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import vn.iostar.entity.Parcel;
 import vn.iostar.entity.User;
-import vn.iostar.service.IParcelService;
-import vn.iostar.service.IUserService;
+import vn.iostar.service_M.IParcelService_M;
+import vn.iostar.service_M.IUserService_M;
 
 import java.util.List;
 
@@ -16,10 +16,10 @@ import java.util.List;
 public class AssignShipperController {
 
     @Autowired
-    private IParcelService parcelService;
+    private IParcelService_M parcelService;
 
     @Autowired
-    private IUserService userService;
+    private IUserService_M userService;
 
     // Hiển thị danh sách các đơn chưa có shipper
     @GetMapping("")

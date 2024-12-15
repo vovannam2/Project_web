@@ -1,4 +1,4 @@
-package vn.iostar.service.impl;
+package vn.iostar.service.impl_M;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,17 +10,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iostar.repository.*;
+import vn.iostar.service_M.*;
 import vn.iostar.entity.ParcelType;
 import vn.iostar.entity.Role;
 import vn.iostar.entity.User;
-import vn.iostar.service.*;
 
 @Service
-public class RoleServiceImpl implements IRoleService{
+public class RoleServiceImpl_M implements IRoleService_M{
 
 
 	@Autowired
-	RoleRepository roleRepository;
+	RoleRepository_M roleRepository;
 
 	@Override
 	public long count() {

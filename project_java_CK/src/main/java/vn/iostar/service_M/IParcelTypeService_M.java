@@ -1,4 +1,4 @@
-package vn.iostar.service;
+package vn.iostar.service_M;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +11,7 @@ import vn.iostar.entity.ParcelType;
 import vn.iostar.entity.User;
 import vn.iostar.models.ParcelDTO;
 
-public interface IParcelTypeService {
+public interface IParcelTypeService_M {
 
 	void deleteAll();
 

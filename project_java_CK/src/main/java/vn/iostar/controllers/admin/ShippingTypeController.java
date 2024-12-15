@@ -7,14 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import vn.iostar.service.IShippingTypeService;
 import vn.iostar.entity.*;
+import vn.iostar.service_M.IShippingTypeService_M;
 
 @Controller
 @RequestMapping("admin/management/shippingManagement/shippingType")
 public class ShippingTypeController {
 	@Autowired
-	IShippingTypeService shippingTypeService;
+	IShippingTypeService_M shippingTypeService;
 	
 	@RequestMapping("")
     public String listUsers(ModelMap model) {

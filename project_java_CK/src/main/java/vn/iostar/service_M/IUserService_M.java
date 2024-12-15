@@ -1,10 +1,10 @@
-package vn.iostar.service;
+package vn.iostar.service_M;
 
 import java.util.List;
 
 import vn.iostar.entity.User;
 
-public interface IUserService {
+public interface IUserService_M {
 
 	void deleteUserById(Integer id);
 

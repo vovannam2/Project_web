@@ -1,24 +1,24 @@
-package vn.iostar.service.impl;
+package vn.iostar.service.impl_M;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.iostar.entity.Parcel;
 import vn.iostar.entity.PostOffice;
 import vn.iostar.entity.User;
 import vn.iostar.models.ParcelDTO;
-import vn.iostar.repository.ParcelRepository;
-import vn.iostar.repository.PostOfficeRepository;
-import vn.iostar.repository.UserRepositoryAdmin;
-import vn.iostar.service.IParcelService;
+import vn.iostar.repository.ParcelRepository_M;
+import vn.iostar.repository.PostOfficeRepository_M;
+import vn.iostar.repository.UserRepositoryAdmin_M;
+import vn.iostar.service_M.IParcelService_M;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ParcelServiceImpl implements IParcelService {
+public class ParcelServiceImpl_M implements IParcelService_M {
 
     @Autowired
-    private ParcelRepository parcelRepository;
+    private ParcelRepository_M parcelRepository;
 
     @Override
     public ParcelDTO getParcelById(Integer id) {
@@ -78,7 +78,7 @@ public class ParcelServiceImpl implements IParcelService {
 	    return parcelDTOs;
 	}
 	@Autowired
-    private UserRepositoryAdmin userRepository;  // Repository của User để lấy danh sách shipper
+    private UserRepositoryAdmin_M userRepository;  // Repository của User để lấy danh sách shipper
 
     @Override
     public List<Parcel> getUnassignedParcels() {
@@ -150,7 +150,7 @@ public class ParcelServiceImpl implements IParcelService {
 //  }
     
     @Autowired
-    private PostOfficeRepository postOfficeRepository;
+    private PostOfficeRepository_M postOfficeRepository;
     public List<ParcelDTO> findParcelsByStartOfficeAddress(String address) {
         PostOffice postOffice = postOfficeRepository.findByAddress(address);
         if (postOffice != null) {

@@ -9,7 +9,7 @@ import vn.iostar.entity.Parcel;
 import vn.iostar.entity.PostOffice;
 import vn.iostar.models.ParcelDTO;
 
-public interface ParcelRepository extends JpaRepository<Parcel, Integer> {
+public interface ParcelRepository_M extends JpaRepository<Parcel, Integer> {
     // Bạn có thể thêm các phương thức truy vấn tùy chỉnh tại đây nếu cần
 	// Lấy danh sách Parcel chưa có shipper
     List<Parcel> findByShipperIsNull();

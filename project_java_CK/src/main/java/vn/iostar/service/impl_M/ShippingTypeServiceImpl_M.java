@@ -1,4 +1,4 @@
-package vn.iostar.service.impl;
+package vn.iostar.service.impl_M;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,18 +10,18 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import vn.iostar.repository.*;
+import vn.iostar.service_M.*;
 import vn.iostar.entity.ShippingType;
 import vn.iostar.entity.User;
-import vn.iostar.service.*;
 
 @Service
-public class ShippingTypeServiceImpl implements IShippingTypeService{
+public class ShippingTypeServiceImpl_M implements IShippingTypeService_M{
 
 
 	@Autowired
-	ShippingTypeRepository shippingTypeRepository;
+	ShippingTypeRepository_M shippingTypeRepository;
 
-	public ShippingTypeServiceImpl(ShippingTypeRepository shippingTypeRepository) {
+	public ShippingTypeServiceImpl_M(ShippingTypeRepository_M shippingTypeRepository) {
 		this.shippingTypeRepository = shippingTypeRepository;
 	}
 // entity

@@ -1,4 +1,4 @@
-package vn.iostar.service.impl;
+package vn.iostar.service.impl_M;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,14 +8,14 @@ import org.springframework.stereotype.Service;
 
 import vn.iostar.embeddedld.ShippingFeeId;
 import vn.iostar.entity.ShippingFee;
-import vn.iostar.repository.ShippingFeeRepository;
-import vn.iostar.service.IShippingFeeService;
+import vn.iostar.repository.ShippingFeeRepository_M;
+import vn.iostar.service_M.IShippingFeeService_M;
 
 @Service
-public class ShippingFeeServiceImpl implements IShippingFeeService{
+public class ShippingFeeServiceImpl_M implements IShippingFeeService_M{
 
 	@Autowired
-    private ShippingFeeRepository shippingFeeRepository;
+    private ShippingFeeRepository_M shippingFeeRepository;
 
     @Override
 	public List<ShippingFee> getAllShippingFees() {

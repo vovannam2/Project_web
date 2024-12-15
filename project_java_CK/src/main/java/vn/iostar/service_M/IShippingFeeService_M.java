@@ -1,4 +1,4 @@
-package vn.iostar.service;
+package vn.iostar.service_M;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +9,7 @@ import vn.iostar.embeddedld.ShippingFeeId;
 import vn.iostar.entity.ShippingFee;
 
 @Service
-public interface IShippingFeeService {
+public interface IShippingFeeService_M {
 
 	List<ShippingFee> getAllShippingFees();
 

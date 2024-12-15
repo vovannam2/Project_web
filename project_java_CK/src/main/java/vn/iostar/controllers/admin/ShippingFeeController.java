@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.*;
 
 import vn.iostar.embeddedld.ShippingFeeId;
 import vn.iostar.entity.ShippingFee;
-import vn.iostar.service.IShippingFeeService;
+import vn.iostar.service_M.IShippingFeeService_M;
 @Controller
 @RequestMapping("/admin/management/shippingFees")
 public class ShippingFeeController {
 
     @Autowired
-    private IShippingFeeService shippingFeeService;
+    private IShippingFeeService_M shippingFeeService;
 
     // Lấy tất cả các phí vận chuyển
     @RequestMapping("")

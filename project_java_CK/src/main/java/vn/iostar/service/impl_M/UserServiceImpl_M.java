@@ -1,18 +1,18 @@
-package vn.iostar.service.impl;
+package vn.iostar.service.impl_M;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.iostar.entity.User;
-import vn.iostar.repository.UserRepositoryAdmin;
-import vn.iostar.service.IUserService;
+import vn.iostar.repository.UserRepositoryAdmin_M;
+import vn.iostar.service_M.IUserService_M;
 
 import java.util.List;
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl_M implements IUserService_M {
 
     @Autowired
-    private UserRepositoryAdmin userRepository;
+    private UserRepositoryAdmin_M userRepository;
 
     @Override
     public List<User> findShippers() {
