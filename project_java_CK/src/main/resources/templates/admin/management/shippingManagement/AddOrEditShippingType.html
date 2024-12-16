@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{admin/layout-admin.html}">
 
 <head>
 	<meta charset="utf-8">
@@ -10,6 +12,7 @@
 </head>
 
 <body>
+	<section layout:fragment="content">
 	<section class="row table-addlist">
 		<div class="col-md-6 offset-md-3">
 			<form th:action="@{/admin/management/shippingManagement/shippingType/saveOrUpdate}" method="POST">
@@ -58,6 +61,8 @@
 </style>
 		</div>
 	</section>
+	</section>
+	
 </body>
 
 </html>

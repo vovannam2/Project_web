@@ -15,6 +15,8 @@ public interface IShipperService {
 
 	List<Parcel> findParcelsByStatusAndShipperId(Integer shipperId, String status);
 
+	<S extends Parcel> S save(S entity);
+
 
 	
 

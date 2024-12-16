@@ -1,5 +1,6 @@
 package vn.iostar.model;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,7 +21,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
         this.mailSender = mailSender;
     }
     @Autowired
-    private static final String ADMIN_EMAIL = "mecafo2287@ckuer.com"; // Địa chỉ email của admin
+    private static final String ADMIN_EMAIL = "vovannam220304@gmail.com"; // Địa chỉ email của admin
     // Lưu trữ session của admin và user
     private static Map<String, WebSocketSession> sessions = new HashMap<>();
     @Override

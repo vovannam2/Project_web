@@ -88,7 +88,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 			+ "WHERE name NOT LIKE '%user%'),\r\n"
 			+ "Office AS (\r\n"
 			+ "SELECT * FROM employee_office)\r\n"
-			+ "SELECT u.user_id, u.email, u.password, u.fullname, \r\n"
+			+ "SELECT u.user_id, u.email, u.password, u.fullName, \r\n"
 			+ "u.phone, u.create_date, r.name, o.status, o.office_id\r\n"
 			+ "FROM TableUser u\r\n"
 			+ "JOIN TableRole r ON u.role_id = r.role_id\r\n"
@@ -96,7 +96,7 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 			+ "ORDER BY u.create_date DESC\r\n" , nativeQuery = true)
 	List<Object[]> findAllEmployee();
 	
-	@Query("SELECT u.userId, u.email, u.password, u.fullname, u.phone, u.createDate, r.name, eo.status, eo.office.officeId " +
+	@Query("SELECT u.userId, u.email, u.password, u.fullName, u.phone, u.createDate, r.name, eo.status, eo.office.officeId " +
 		       "FROM User u " +
 		       "JOIN u.role r " +
 		       "LEFT JOIN EmployeeOffice eo ON eo.user.userId = u.userId " +

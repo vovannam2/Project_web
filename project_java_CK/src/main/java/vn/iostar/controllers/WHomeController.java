@@ -19,11 +19,30 @@ import java.util.List;
 @Controller
 @RequestMapping("/home")
 public class WHomeController {
-	
-	@GetMapping("/shipper")
-	public String index()
+	@Autowired
+	CreateUsersServiceImpl userService;
+	@Autowired
+	UserFunctionServiceImpl functionService;
+
+	@GetMapping("/home_user")
+	public String homeUser(HttpSession session, Model model)
 	{
-		return "shipper/home-shipper";
+		User user = (User)session.getAttribute("user");
+		model.addAttribute("user",user);
+		if(user!= null) {
+			session.setAttribute("user", user);
+			System.out.println("sessionnn home:" + user.getUserId() + " role?" + user.getRole().getName());
+			List<Object[]> productDetails = functionService.getUserWithParcelsAndProducts(user.getUserId());
+			model.addAttribute("productDetails", productDetails);
+		}
+		return "/user/home-user";
+	}
+	@GetMapping("/home_shipper")
+	public String homeShipper(Model model)
+	{
+		List<User> categories = userService.findAll();
+		model.addAttribute("list", categories);
+		return "/admin/home-admin";
 	}
 	@GetMapping("/Contact_manager")
 	public String loadChat() {

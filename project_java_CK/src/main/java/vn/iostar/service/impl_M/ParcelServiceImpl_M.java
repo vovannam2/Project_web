@@ -29,9 +29,9 @@ public class ParcelServiceImpl_M implements IParcelService_M {
             ParcelDTO parcelDTO = new ParcelDTO();
             parcelDTO.setParcelId(parcel.getParcelId());
             parcelDTO.setUserId(parcel.getUser().getUserId());
-            parcelDTO.setUserName(parcel.getUser().getFullname());
+            parcelDTO.setUserName(parcel.getUser().getFullName());
             parcelDTO.setRecipientName(parcel.getRecipient() != null ? parcel.getRecipient().getFullname() : "N/A");
-            parcelDTO.setShipperName(parcel.getShipper() != null ? parcel.getShipper().getFullname() : "N/A");
+            parcelDTO.setShipperName(parcel.getShipper() != null ? parcel.getShipper().getFullName() : "N/A");
             parcelDTO.setWeight(parcel.getWeight());
             parcelDTO.setStatus(parcel.getStatus());
             parcelDTO.setNote(parcel.getNote());
@@ -58,9 +58,9 @@ public class ParcelServiceImpl_M implements IParcelService_M {
 	        ParcelDTO parcelDTO = new ParcelDTO();
 	        parcelDTO.setParcelId(parcel.getParcelId());
 	        parcelDTO.setUserId(parcel.getUser().getUserId());
-	        parcelDTO.setUserName(parcel.getUser().getFullname());
+	        parcelDTO.setUserName(parcel.getUser().getFullName());
 	        parcelDTO.setRecipientName(parcel.getRecipient() != null ? parcel.getRecipient().getFullname() : "N/A");
-	        parcelDTO.setShipperName(parcel.getShipper() != null ? parcel.getShipper().getFullname() : "N/A");
+	        parcelDTO.setShipperName(parcel.getShipper() != null ? parcel.getShipper().getFullName() : "N/A");
 	        parcelDTO.setWeight(parcel.getWeight());
 	        parcelDTO.setStatus(parcel.getStatus());
 	        parcelDTO.setNote(parcel.getNote());
@@ -125,9 +125,9 @@ public class ParcelServiceImpl_M implements IParcelService_M {
             ParcelDTO parcelDTO = new ParcelDTO();
             parcelDTO.setParcelId(parcel.getParcelId());
             parcelDTO.setUserId(parcel.getUser().getUserId());
-            parcelDTO.setUserName(parcel.getUser().getFullname());
+            parcelDTO.setUserName(parcel.getUser().getFullName());
             parcelDTO.setRecipientName(parcel.getRecipient() != null ? parcel.getRecipient().getFullname() : "N/A");
-            parcelDTO.setShipperName(parcel.getShipper() != null ? parcel.getShipper().getFullname() : "N/A");
+            parcelDTO.setShipperName(parcel.getShipper() != null ? parcel.getShipper().getFullName() : "N/A");
             parcelDTO.setWeight(parcel.getWeight());
             parcelDTO.setStatus(parcel.getStatus());
             parcelDTO.setNote(parcel.getNote());

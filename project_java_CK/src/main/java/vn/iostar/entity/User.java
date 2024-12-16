@@ -37,8 +37,8 @@ public class User {
     private String password;
     private String rePassword;
 
-    @Column(nullable = false, columnDefinition = "NVARCHAR(100)")
-    private String fullname;
+    @Column(nullable = false)
+    private String fullName;
 
     private String phone;
 

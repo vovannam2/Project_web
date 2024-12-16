@@ -41,6 +41,12 @@ public class ShipperService implements IShipperService{
 			LocalDate completeDate) {
 		return shipperrepo.findParcelsByFilters(shipperId, status, startDate, completeDate);
 	}
+
+
+	@Override
+	public <S extends Parcel> S save(S entity) {
+		return parcelRepo.save(entity);
+	}
 	
 
 	

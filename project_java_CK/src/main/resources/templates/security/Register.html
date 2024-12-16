@@ -12,31 +12,35 @@
           crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script type="text/javascript">
-    $(document).ready(function() {
-        $('#images').change(function() {
-            showImageThumbnail(this);
-        });
-    });
+		   $(document).ready(function() {
+		    $('#images').change(function() {
+		        showImageThumbnail(this);
+		    });
+		});
+		
+		function showImageThumbnail(fileInput) {
+		    const file = fileInput.files[0];
+		    if (file) {
+		        const reader = new FileReader();
+		        reader.onload = function(e) {
+		            $('#thumbnail').attr('src', e.target.result);
+		        };
+		        reader.readAsDataURL(file);
+		    }
+		}
+		
+		// Xử lý DOMContentLoaded
+		document.addEventListener("DOMContentLoaded", function() {
+		    var alertBox = document.getElementById('alert-box');
+		
+		    if (alertBox) {
+		        // Nếu có thông báo, ẩn nó sau 5 giây
+		        setTimeout(function() {
+		            alertBox.style.display = 'none';
+		        }, 5000); // 5000ms = 5 giây
+		    }
+		});
 
-    function showImageThumbnail(fileInput) {
-        const file = fileInput.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                $('#thumbnail').attr('src', e.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
-        document.addEventListener("DOMContentLoaded", function() {
-        var alertBox = document.getElementById('alert-box');
-
-        if (alertBox) {
-            // Nếu có thông báo, ẩn nó sau 5 giây
-            setTimeout(function() {
-                alertBox.style.display = 'none';
-            }, 5000); // 5000ms = 5 giây
-        }
-    }
   </script>
 
   <style>

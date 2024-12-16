@@ -111,7 +111,7 @@ public class UserFunction {
                              Model model) throws IOException {
         user = userService.getUser(email);
 
-        user.setFullname(name);
+        user.setFullName(name);
         user.setPhone(phone);
         user.setAddress(address);
         System.out.println(user.getUserId());

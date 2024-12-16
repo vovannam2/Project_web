@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpSession;
 import vn.iostar.entity.Parcel;
@@ -57,13 +59,14 @@ public class ShipperController {
 	        HttpSession session, 
 	        Model model) {
 
-	    User currentUser = (User) session.getAttribute("currentUser");
-	    if (currentUser == null) {
-	        return "redirect:/security/login"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
-	    }
+//	    User currentUser = (User) session.getAttribute("currentUser");
+//	    if (currentUser == null) {
+//	        return "redirect:/security/login"; // Chuyển hướng đến trang đăng nhập nếu chưa đăng nhập
+//	    }
 
-	    Integer shipperId = currentUser.getUserId();
-	    
+//	    Integer shipperId = currentUser.getUserId();
+		
+		Integer shipperId = 2;
 	    // Kiểm tra nếu startDate hoặc endDate không có giá trị
 	    if (startDate == null && completeDate == null) {
 	        // Nếu không có ngày, tìm tất cả đơn hàng theo trạng thái (nếu có)
@@ -96,4 +99,28 @@ public class ShipperController {
 		model.addAttribute("error", "Parcel not found.");
 		return new ModelAndView("redirect:/shipper/listParcel", model);
 	}
+	@PostMapping("/updateStatus")
+    public String updateStatus(@RequestParam("parcelId") int parcelId,
+                               @RequestParam("status") String status,
+                               RedirectAttributes redirectAttributes) {
+        // Lấy thông tin đơn hàng từ cơ sở dữ liệu
+        Parcel parcel = shiperService.findById(parcelId).orElse(null);
+
+        if (parcel == null) {
+            // Nếu không tìm thấy đơn hàng, thêm thông báo lỗi
+            redirectAttributes.addFlashAttribute("errorMessage", "Không tìm thấy đơn hàng với ID: " + parcelId);
+            return "redirect:/shipper/listPacel";
+        }
+
+        // Cập nhật trạng thái
+        parcel.setStatus(status);
+
+        // Lưu thay đổi
+        shiperService.save(parcel);
+
+        // Thêm thông báo thành công
+        redirectAttributes.addFlashAttribute("successMessage", "Cập nhật trạng thái thành công cho đơn hàng: " + parcelId);
+
+        return "redirect:/shipper/listPacel";
+    }
 }
