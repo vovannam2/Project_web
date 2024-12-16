@@ -18,7 +18,7 @@ public interface ParcelRepository_M extends JpaRepository<Parcel, Integer> {
     List<String> findAllDistinctStatuses(); // Phương thức để lấy tất cả trạng thái duy nhất
 
  // Tìm theo địa chỉ văn phòng gửi
-    List<Parcel> findByStartOffice_Address(String address); 
+    List<Parcel> findByStartOffice_Address(String address);
 
     // Hoặc nếu bạn muốn tìm theo ID
     List<Parcel> findByStartOffice_OfficeId(Integer officeId);

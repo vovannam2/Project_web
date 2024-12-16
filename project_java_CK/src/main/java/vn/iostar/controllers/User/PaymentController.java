@@ -31,9 +31,15 @@ public class PaymentController {
     @GetMapping("/create_payment") // Xử lý thanh toán
     public String createPayment( HttpSession session, Model model) {
         User user = (User)session.getAttribute("user");
+        if(user == null) {
+        	System.out.println("ádsadsad");;
+        }
         model.addAttribute("user", user);
         Map<String, Object> data1 = paymentService.getUnpaidParcelsWithTotal(user.getUserId());
         // Gửi dữ liệu qua model để render giao diện
+        if(data1.get("parcels").equals(null)) {
+        	System.out.println("1231232");
+        }
         model.addAttribute("parcels", data1.get("parcels"));
         model.addAttribute("totalAmount", data1.get("totalAmount"));
 

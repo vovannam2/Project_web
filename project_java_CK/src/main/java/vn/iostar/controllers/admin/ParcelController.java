@@ -65,22 +65,20 @@ public class ParcelController {
 
     @GetMapping("/filter")
     public String filterParcelsByStartOffice(@RequestParam(required = false) String address, Model model) {
-        // Lấy danh sách các địa chỉ văn phòng
         List<String> postOffices = postOfficeService.getAllOptionAddress();
-        System.out.println("Number of post offices: " + postOffices.size()); // In ra số lượng địa chỉ
         model.addAttribute("postOffices", postOffices);
 
-        // Kiểm tra address và tìm các bưu kiện tương ứng
         List<ParcelDTO> parcels;
         if (address != null && !address.isEmpty()) {
-            parcels = parcelService.findParcelsByStartOfficeAddress(address);
-            model.addAttribute("selectedAddress", address); // Lưu địa chỉ đã chọn để hiển thị
+            parcels = parcelService.findByStartOfficeAddress(address);
+            model.addAttribute("selectedAddress", address); 
         } else {
-            parcels = parcelService.findAll(); // Lấy tất cả bưu kiện nếu không có địa chỉ
+            parcels = parcelService.findAll();
         }
 
         model.addAttribute("parcels", parcels);
         model.addAttribute("statuses", parcelService.getAllStatuses());
+        
         return "admin/management/ParcelManagement/listParcel"; 
     }
 
